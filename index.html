@@ -2,925 +2,967 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>China Wok — Calculadora</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>China Wok — Herramientas</title>
 <style>
-:root {
-  --red: #c71920;
-  --red-light: #f9e8e9;
-  --green: #2f7d22;
-  --green-light: #eef8e9;
-  --blue: #1769aa;
-  --blue-light: #eaf3ff;
-  --bg: #f5f1eb;
-  --card: #ffffff;
-  --line: #e8e0d4;
-  --text: #1a1a1a;
-  --muted: #888;
-  --radius: 18px;
-  --accent: var(--red);
-  --accent-light: var(--red-light);
+:root{
+  --red:#c71920;--redd:#941116;
+  --green:#2f7d22;--greend:#1f5f18;
+  --blue:#1769aa;--blued:#0f4d82;
+  --orange:#b85c00;
+  --soft:#f8f4ec;--card:#fff;
+  --line:#eadfce;--text:#202124;--muted:#697077;
+  --shadow:0 12px 36px rgba(0,0,0,.1);
+  --r:18px;
 }
-body.hidratados { --accent: var(--blue); --accent-light: var(--blue-light); }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--soft);min-height:100vh;font-size:15px;}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* SHELL */
+.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh;}
+aside{background:linear-gradient(180deg,#111,#071009);color:#fff;padding:24px 16px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.logo{margin-bottom:28px;line-height:.9;letter-spacing:4px;font-weight:900;}
+.logo .c{color:var(--red);font-size:26px;display:block;}
+.logo .w{font-size:30px;display:block;}
+.logo::after{content:"";display:block;width:100px;height:4px;margin-top:8px;background:var(--green);transform:skewX(-25deg);border-radius:99px;}
+.nav-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;color:rgba(255,255,255,.3);text-transform:uppercase;padding:0 14px;margin:14px 0 5px;}
+nav button{width:100%;border:0;background:transparent;color:#ccc;display:flex;align-items:center;gap:9px;padding:11px 14px;margin-bottom:3px;border-radius:12px;cursor:pointer;font-size:14px;text-align:left;transition:.15s;font-family:inherit;}
+nav button:hover{background:rgba(255,255,255,.08);}
+nav button.act-m{background:var(--red);color:#fff;}
+nav button.act-h{background:var(--blue);color:#fff;}
+nav button.act-t{background:var(--orange);color:#fff;}
+main{padding:26px;min-width:0;}
 
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 15px;
-  -webkit-tap-highlight-color: transparent;
-}
+/* PAGE */
+.page{display:none;}
+.page.show{display:block;}
 
-/* ── LAYOUT ── */
-.shell {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 100vh;
-}
+/* TOPBAR */
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:22px;flex-wrap:wrap;}
+.title-area{display:flex;gap:12px;align-items:center;}
+.icon-box{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:#fff;box-shadow:var(--shadow);flex-shrink:0;}
+h1{font-size:clamp(22px,3.5vw,40px);letter-spacing:1px;}
+.sub{color:var(--muted);margin-top:3px;font-size:13px;}
+.acts{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 15px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit;transition:all .15s;}
+.pill:hover{background:#f0ebe0;}
+.pill.danger{background:#ffeaea;border-color:#f5c0c0;color:var(--red);}
+.pill.danger:hover{background:#ffcfcf;}
 
-/* ── TOP NAV (mobile-first, becomes sidebar on desktop) ── */
-.topnav {
-  background: #111;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
+/* 2COL */
+.two{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start;}
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-.brand-mark {
-  background: var(--red);
-  color: #fff;
-  font-weight: 900;
-  font-size: 11px;
-  letter-spacing: 1px;
-  line-height: 1.15;
-  padding: 5px 8px;
-  border-radius: 8px;
-}
-.brand-name {
-  font-weight: 900;
-  font-size: 17px;
-  letter-spacing: 1px;
-  color: #fff;
-}
+/* CARD */
+.card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;}
+.cbody{padding:20px;}
+.stitle{font-size:15px;font-weight:900;margin:0 0 12px;display:flex;align-items:center;gap:7px;}
+.step{color:var(--green);font-weight:900;}
 
-.seg {
-  display: flex;
-  background: rgba(255,255,255,.1);
-  border-radius: 10px;
-  padding: 3px;
-  gap: 3px;
-}
-.seg button {
-  border: none;
-  background: transparent;
-  color: rgba(255,255,255,.6);
-  font-size: 13px;
-  font-weight: 700;
-  padding: 7px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all .18s;
-  white-space: nowrap;
-}
-.seg button.active {
-  background: var(--accent);
-  color: #fff;
-}
+/* SELECT */
+.sw{position:relative;}
+.sw::after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);}
+select{width:100%;padding:12px 34px 12px 14px;border-radius:11px;border:1.5px solid var(--line);background:#fff;font-size:15px;outline:none;font-family:inherit;color:var(--text);appearance:none;cursor:pointer;transition:border-color .15s;}
+select:focus{border-color:var(--green);}
 
-/* ── MAIN ── */
-main {
-  padding: 16px;
-  max-width: 600px;
-  margin: 0 auto;
-  width: 100%;
-}
+/* QTY */
+.iw{position:relative;}
+.iw span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:800;font-size:15px;}
+input[type=number]{width:100%;padding:11px 55px 11px 15px;border-radius:11px;border:1.5px solid var(--line);background:#fff;font-size:28px;font-weight:900;outline:none;font-family:inherit;transition:border-color .15s;}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;}
+input[type=number]:focus{border-color:var(--green);}
+.strow{display:flex;gap:7px;margin-top:7px;}
+.stbtn{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px;font-size:20px;cursor:pointer;transition:background .15s;font-family:inherit;}
+.stbtn:hover{background:#f0ebe0;}
 
-/* on wider screens, widen it nicely */
-@media (min-width: 700px) {
-  main { max-width: 720px; padding: 28px 24px; }
-}
-@media (min-width: 1000px) {
-  main { max-width: 960px; }
-  .two-col { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
-}
+/* QUICK */
+.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:10px 0 16px;}
+.quick button{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:9px 3px;cursor:pointer;font-weight:800;font-size:13px;font-family:inherit;transition:all .15s;}
+.quick button.on{background:var(--green);color:#fff;border-color:var(--green);}
 
-/* ── CARD ── */
-.card {
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  box-shadow: 0 2px 12px rgba(0,0,0,.07);
-  overflow: hidden;
-  margin-bottom: 14px;
-}
-.card-head {
-  padding: 14px 18px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.card-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.card-body { padding: 14px 18px 18px; }
+/* UNIT TOGGLE */
+.urow{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
+.urow span{font-size:12px;font-weight:700;color:var(--muted);}
+.upills{display:flex;border:1.5px solid var(--line);border-radius:9px;overflow:hidden;}
+.upills button{border:none;background:transparent;padding:5px 13px;font-size:12px;font-weight:800;cursor:pointer;color:var(--muted);transition:all .15s;font-family:inherit;}
+.upills button.on{background:var(--green);color:#fff;}
 
-/* ── SELECT RECIPE ── */
-.recipe-select {
-  width: 100%;
-  padding: 13px 16px;
-  border: 1.5px solid var(--line);
-  border-radius: 12px;
-  background: var(--bg);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  outline: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  cursor: pointer;
-}
-.recipe-select:focus { border-color: var(--accent); }
+/* BASE LIST */
+.blist{display:grid;gap:4px;margin-top:6px;}
+.brow{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed #e2d8c8;font-size:13px;}
+.brow:last-child{border-bottom:none;}
+.tip{margin-top:12px;padding:12px 14px;border-radius:12px;background:#eef8e9;color:#285a21;font-size:13px;line-height:1.5;}
 
-/* ── QUANTITY INPUT ── */
-.qty-block {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-}
-.qty-stepper {
-  display: flex;
-  align-items: center;
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  flex: 1;
-}
-.qty-stepper button {
-  width: 46px;
-  height: 54px;
-  border: none;
-  background: transparent;
-  font-size: 22px;
-  font-weight: 300;
-  color: var(--text);
-  cursor: pointer;
-  transition: background .15s;
-  flex-shrink: 0;
-}
-.qty-stepper button:hover { background: var(--line); }
-.qty-stepper button:active { background: #ddd; }
-.qty-field {
-  flex: 1;
-  border: none;
-  background: transparent;
-  text-align: center;
-  font-size: 30px;
-  font-weight: 900;
-  color: var(--text);
-  outline: none;
-  min-width: 0;
-  width: 100%;
-}
-.qty-field::-webkit-inner-spin-button,
-.qty-field::-webkit-outer-spin-button { -webkit-appearance: none; }
-.qty-unit-badge {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-  white-space: nowrap;
-}
+/* HERO */
+.hero{color:#fff;padding:18px 24px;border-radius:var(--r);margin-bottom:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;box-shadow:var(--shadow);}
+.hero small{display:block;opacity:.8;margin-bottom:2px;font-size:12px;}
+.hero strong{font-size:28px;line-height:1;}
 
-.quick-row {
-  display: flex;
-  gap: 7px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
-.quick-row button {
-  flex: 1;
-  min-width: 42px;
-  border: 1.5px solid var(--line);
-  background: var(--bg);
-  border-radius: 10px;
-  padding: 9px 6px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all .15s;
-  color: var(--text);
-}
-.quick-row button:hover { border-color: var(--accent); color: var(--accent); }
-.quick-row button.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
+/* TABLE */
+.tcrd{padding:18px;}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:13px;border:1px solid var(--line);overflow:hidden;}
+th,td{padding:11px 13px;border-bottom:1px solid #eee4d7;text-align:left;}
+th{background:#fbf7ef;font-size:11px;color:#555;font-weight:700;}
+tr:last-child td{border-bottom:0;}
+td.amt{font-weight:900;color:var(--green);font-size:16px;}
+.sumgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:14px;}
+.sumbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;}
+.sumbox small{display:block;color:var(--muted);margin-bottom:4px;font-size:11px;}
+.sumbox strong{font-size:17px;}
+.btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:900;cursor:pointer;font-size:13px;font-family:inherit;transition:all .15s;}
+.btn-r{background:var(--red);color:#fff;}
+.btn-r:hover{background:var(--redd);}
+.btn-b{background:var(--blue);color:#fff;}
+.btn-b:hover{background:var(--blued);}
+.btn-g{background:#fff;border:1.5px solid var(--line);color:var(--text);}
+.btn-g:hover{background:#f0ebe0;}
+.rdy{background:#eef8e9;border:1px solid #c3e6c1;border-radius:13px;padding:13px 15px;color:#285a21;font-weight:600;font-size:14px;}
 
-/* ── UNIT TOGGLE ── */
-.unit-toggle {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  margin-top: 10px;
-}
-.unit-toggle span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.toggle-pill {
-  display: flex;
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-}
-.toggle-pill button {
-  border: none;
-  background: transparent;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px 12px;
-  cursor: pointer;
-  color: var(--muted);
-  transition: all .15s;
-}
-.toggle-pill button.active {
-  background: var(--accent);
-  color: #fff;
-}
+/* TIEMPOS */
+.tv-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.tvtab{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--muted);}
+.tvtab:hover{border-color:#bbb;color:var(--text);}
+.tvtab.on{background:var(--orange);border-color:var(--orange);color:#fff;}
+.tv-ctrl{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.tvsearch{flex:1;min-width:160px;padding:10px 14px;border-radius:11px;border:1.5px solid var(--line);font-size:14px;outline:none;font-family:inherit;}
+.tvsearch:focus{border-color:var(--orange);}
+.spills{display:flex;gap:5px;flex-wrap:wrap;}
+.spill{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:7px 13px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--muted);}
+.spill:hover{border-color:#bbb;color:var(--text);}
+.spill.on{background:var(--orange);border-color:var(--orange);color:#fff;}
+.tvtable{width:100%;border-collapse:collapse;background:#fff;border-radius:13px;border:1px solid var(--line);overflow:hidden;font-size:14px;}
+.tvtable th{background:#fbf7ef;font-size:11px;color:#555;font-weight:700;padding:11px 13px;text-align:left;cursor:pointer;user-select:none;white-space:nowrap;}
+.tvtable th:hover{background:#f0ebe0;}
+.tvtable td{padding:10px 13px;border-bottom:1px solid #eee4d7;vertical-align:middle;}
+.tvtable tr:last-child td{border-bottom:0;}
+.tvtable tr:hover td{background:#fdfaf5;}
+.sep td{background:#f5f0e8!important;padding:7px 13px!important;font-size:11px!important;font-weight:800!important;letter-spacing:1px!important;color:var(--muted)!important;text-transform:uppercase!important;border-top:2px solid var(--line)!important;}
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:800;white-space:nowrap;}
+.bh{background:#fff3e0;color:#b85c00;}
+.bd1{background:#ffeaea;color:#c71920;}
+.bd2{background:#fff8e1;color:#9a6700;}
+.bd4{background:#e8f5e9;color:#2f7d22;}
+.bd5{background:#e3f2fd;color:#1769aa;}
+.bd7{background:#ede7f6;color:#5e35b1;}
+.bemp{background:#f5f5f5;color:#555;}
+.delbtn{background:#ffeaea;border:none;border-radius:7px;color:var(--red);width:27px;height:27px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+.delbtn:hover{background:#ffcfcf;}
+.empty{text-align:center;padding:36px 20px;color:var(--muted);}
 
-/* ── RESULTS TABLE ── */
-.result-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.result-table th {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 0 0 10px;
-  text-align: left;
-}
-.result-table th:last-child,
-.result-table td:last-child { text-align: right; }
-.result-table td {
-  padding: 11px 0;
-  border-top: 1px solid var(--line);
-  font-size: 15px;
-}
-.result-table td.ing-name { color: var(--text); font-weight: 500; }
-.result-table td.per-unit { color: var(--muted); font-size: 13px; }
-.result-table td.total-amt {
-  font-weight: 900;
-  font-size: 17px;
-  color: var(--accent);
-}
+/* MODAL */
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;padding:14px;}
+.mbg.open{display:flex;}
+.modal{background:#fff;border-radius:var(--r);padding:24px;max-width:490px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.25);max-height:90vh;overflow-y:auto;}
+.modal h2{font-size:19px;margin-bottom:16px;}
+.modal label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px;}
+.modal input[type=text],.modal input[type=number],.modal select{width:100%;padding:10px 13px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;outline:none;font-family:inherit;margin-bottom:11px;color:var(--text);background:#faf7f2;transition:border-color .15s;}
+.modal input:focus{border-color:var(--green);}
+.modal select{appearance:auto;padding-right:13px;}
+.mdiv{border:none;border-top:1px solid var(--line);margin:13px 0;}
+.ingrow{display:grid;grid-template-columns:1fr 72px 58px 30px;gap:5px;align-items:center;margin-bottom:6px;}
+.ingrow input{margin-bottom:0!important;font-size:13px;}
+.deling{background:#ffeaea;border:none;border-radius:7px;color:var(--red);width:28px;height:28px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.deling:hover{background:#ffcfcf;}
+.addingbtn{border:1.5px dashed var(--line);background:transparent;border-radius:10px;padding:8px 13px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);width:100%;font-family:inherit;transition:all .15s;margin-bottom:11px;}
+.addingbtn:hover{border-color:var(--green);color:var(--green);background:#eef8e9;}
+.macts{display:flex;gap:8px;margin-top:4px;}
+.savebtn{flex:1;border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit;transition:background .15s;}
+.savebtn.green{background:var(--green);color:#fff;}
+.savebtn.green:hover{background:var(--greend);}
+.savebtn.orange{background:var(--orange);color:#fff;}
+.savebtn.orange:hover{background:#93490a;}
+.cancelbtn{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.rdytog{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
+.rdytog input[type=checkbox]{width:17px;height:17px;margin:0;cursor:pointer;}
+.rdytog label{margin:0;font-size:14px;font-weight:600;cursor:pointer;}
 
-/* ── HERO STRIP ── */
-.hero-strip {
-  background: var(--accent);
-  color: #fff;
-  border-radius: 14px;
-  padding: 16px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  gap: 16px;
-}
-.hero-strip .label { font-size: 12px; opacity: .8; margin-bottom: 2px; }
-.hero-strip .value { font-size: 26px; font-weight: 900; line-height: 1; }
-.hero-strip .divider { width: 1px; background: rgba(255,255,255,.25); align-self: stretch; }
+/* TOAST */
+.toast{position:fixed;right:18px;bottom:18px;background:#111;color:#fff;padding:12px 17px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(6px);pointer-events:none;transition:.25s ease;z-index:200;font-size:13px;}
+.toast.show{opacity:1;transform:translateY(0);}
 
-/* ── READY BADGE ── */
-.ready-msg {
-  background: var(--green-light);
-  color: var(--green);
-  border-radius: 12px;
-  padding: 14px 16px;
-  font-weight: 600;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
 
-/* ── ACTION BUTTONS ── */
-.action-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 16px;
+/* RESPONSIVE */
+@media(max-width:960px){
+  .app{grid-template-columns:1fr;}
+  aside{height:auto;position:relative;padding:13px;}
+  .logo{margin-bottom:9px;}
+  nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+  nav button{margin:0;justify-content:center;padding:10px 7px;font-size:13px;}
+  .two{grid-template-columns:1fr;}
+  main{padding:13px;}
+  .sumgrid{grid-template-columns:1fr 1fr;}
 }
-.btn {
-  flex: 1;
-  min-width: 100px;
-  border: none;
-  border-radius: 12px;
-  padding: 13px 16px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .15s;
-}
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:active { opacity: .85; }
-.btn-ghost {
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  color: var(--text);
-}
-.btn-ghost:hover { border-color: #bbb; }
-
-/* ── EDIT MODE ── */
-.edit-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 18px;
-  background: #fffbf5;
-  border-top: 1px solid var(--line);
-  gap: 8px;
-}
-.edit-bar span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.edit-bar-btns { display: flex; gap: 8px; }
-.btn-edit {
-  border: none;
-  background: transparent;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  cursor: pointer;
-  padding: 4px 10px;
-  border-radius: 8px;
-  transition: background .15s;
-}
-.btn-edit:hover { background: var(--accent-light); }
-.btn-save {
-  background: var(--green);
-  color: #fff;
-  border-radius: 8px;
-  border: none;
-  padding: 7px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.btn-cancel {
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  padding: 7px 14px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  color: var(--text);
-}
-
-/* edit row fields */
-.edit-ing-row {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  padding: 8px 0;
-  border-top: 1px solid var(--line);
-}
-.edit-ing-row input {
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  padding: 7px 10px;
-  font-size: 14px;
-  outline: none;
-  font-family: inherit;
-  color: var(--text);
-  background: var(--bg);
-}
-.edit-ing-row input:focus { border-color: var(--accent); }
-.inp-name { flex: 1; min-width: 0; }
-.inp-amt  { width: 72px; text-align: right; }
-.inp-unit { width: 54px; }
-.del-btn {
-  background: #ffeaea;
-  border: none;
-  border-radius: 7px;
-  width: 32px;
-  height: 32px;
-  font-size: 15px;
-  cursor: pointer;
-  color: #c0392b;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.add-row {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--line);
-}
-.add-row input {
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-size: 14px;
-  outline: none;
-  font-family: inherit;
-  background: var(--bg);
-}
-.add-row input:focus { border-color: var(--accent); }
-.add-row .inp-name { flex: 1; min-width: 0; }
-.add-row .inp-amt  { width: 70px; text-align: right; }
-.add-row .inp-unit { width: 52px; }
-.add-btn {
-  background: var(--green);
-  border: none;
-  color: #fff;
-  border-radius: 8px;
-  width: 36px;
-  height: 36px;
-  font-size: 20px;
-  cursor: pointer;
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* ── TOAST ── */
-.toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: #111;
-  color: #fff;
-  padding: 12px 22px;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  opacity: 0;
-  transition: all .3s cubic-bezier(.34,1.56,.64,1);
-  white-space: nowrap;
-  z-index: 200;
-  pointer-events: none;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-/* ── SECTION HEADING ── */
-.section-h {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
+@media(max-width:480px){
+  .sumgrid{grid-template-columns:1fr;}
+  .quick button{padding:8px 2px;font-size:12px;}
+  nav{grid-template-columns:1fr 1fr;}
+  .ingrow{grid-template-columns:1fr 65px 52px 28px;}
+  h1{font-size:22px;}
 }
 </style>
 </head>
-<body class="marinados">
+<body>
 
-<div class="shell">
-  <nav class="topnav">
-    <a class="brand" href="#">
-      <div class="brand-mark">CHINA<br>WOK</div>
-      <span class="brand-name">Calculadora</span>
-    </a>
-    <div class="seg">
-      <button id="btnM" class="active" onclick="setSection('marinados')">🥩 Marinados</button>
-      <button id="btnH" onclick="setSection('hidratados')">💧 Hidratados</button>
+<!-- RECIPE MODAL -->
+<div class="mbg" id="recMbg" onclick="closeRecModal(event)">
+  <div class="modal">
+    <h2 id="recMTitle">Nueva Receta</h2>
+    <label>Nombre</label>
+    <input type="text" id="mName" placeholder="Ej: Pollo Teriyaki x 20gr"/>
+    <label>Cantidad base</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+      <input type="number" id="mBase" placeholder="1" step="0.1" min="0.1"/>
+      <input type="text"   id="mUnit" placeholder="kg, lt, lonjas…"/>
     </div>
-  </nav>
-
-  <main>
-    <div class="two-col">
-
-      <!-- LEFT COLUMN -->
-      <div>
-        <!-- Recipe selector -->
-        <div class="card">
-          <div class="card-head">
-            <span class="card-label">Receta</span>
-          </div>
-          <div class="card-body">
-            <select class="recipe-select" id="recipeSelect" onchange="render()"></select>
-          </div>
-        </div>
-
-        <!-- Quantity -->
-        <div class="card">
-          <div class="card-head">
-            <span class="card-label">Cantidad</span>
-            <span class="qty-unit-badge" id="unitLabel">kg</span>
-          </div>
-          <div class="card-body">
-            <div class="qty-block">
-              <div class="qty-stepper">
-                <button onclick="stepQty(-1)">−</button>
-                <input class="qty-field" type="number" id="quantity" min="0.1" step="0.5" value="1" oninput="render()"/>
-                <button onclick="stepQty(1)">+</button>
-              </div>
-            </div>
-            <div class="quick-row" id="quickButtons"></div>
-
-            <div class="unit-toggle">
-              <span>Mostrar en:</span>
-              <div class="toggle-pill">
-                <button id="unitG" onclick="setUnit('g')">g</button>
-                <button id="unitKg" class="active" onclick="setUnit('kg')">kg</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT COLUMN -->
-      <div>
-        <!-- Hero -->
-        <div class="hero-strip" id="heroStrip">
-          <div>
-            <div class="label" id="heroLabel">Cantidad</div>
-            <div class="value" id="heroQty">1 kg</div>
-          </div>
-          <div class="divider"></div>
-          <div>
-            <div class="label">Total mezcla</div>
-            <div class="value" id="heroTotal">—</div>
-          </div>
-        </div>
-
-        <!-- Results -->
-        <div class="card" id="resultCard">
-          <div class="card-head">
-            <span class="card-label" id="resultLabel">Ingredientes necesarios</span>
-          </div>
-          <div class="card-body" id="resultBody"></div>
-          <div class="edit-bar" id="editBar">
-            <span id="editBarLabel">Base: 1 kg</span>
-            <div class="edit-bar-btns">
-              <button class="btn-edit" id="editToggleBtn" onclick="toggleEdit()">✏ Editar</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Actions -->
-        <div class="action-row">
-          <button class="btn btn-primary" onclick="copyResults()">Copiar resultado</button>
-          <button class="btn btn-ghost" onclick="resetApp()">Limpiar</button>
-        </div>
-      </div>
-
+    <div style="height:8px"></div>
+    <div class="rdytog">
+      <input type="checkbox" id="mReady" onchange="onReadyChg()"/>
+      <label for="mReady">Ya llega listo / sin preparación</label>
     </div>
-  </main>
+    <div id="ingSection">
+      <div class="mdiv"></div>
+      <label>Ingredientes</label>
+      <div class="ingrow" style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:3px">
+        <span>NOMBRE</span><span>CANTIDAD</span><span>UNIDAD</span><span></span>
+      </div>
+      <div id="ingRows"></div>
+      <button class="addingbtn" onclick="addIngRow()">+ Agregar ingrediente</button>
+    </div>
+    <div class="macts">
+      <button class="savebtn green" onclick="saveRecipe()">💾 Guardar</button>
+      <button class="cancelbtn" onclick="closeRecModal()">Cancelar</button>
+    </div>
+  </div>
 </div>
 
+<!-- TV MODAL -->
+<div class="mbg" id="tvMbg" onclick="closeTvModal(event)">
+  <div class="modal">
+    <h2>Nuevo Tiempo de Vida</h2>
+    <label>Producto</label>
+    <input type="text" id="tvName" placeholder="Ej: Frejolito chino"/>
+    <label>Tiempo de vida</label>
+    <input type="text" id="tvTime" placeholder="Ej: 2 DÍAS, 12 HORAS, SEGÚN EMPAQUE"/>
+    <label>Rotulación</label>
+    <input type="text" id="tvRot" placeholder="Etiqueta de producción"/>
+    <label>Almacenamiento</label>
+    <input type="text" id="tvAlm" placeholder="Ej: Envase plástico"/>
+    <label>Categoría</label>
+    <select id="tvCatSel">
+      <option value="almacen">Almacén</option>
+      <option value="estacion">Estación</option>
+      <option value="verduras">Mix / Verduras</option>
+      <option value="marinados_tv">Marinados porcionados</option>
+      <option value="congelacion">Congelación</option>
+    </select>
+    <div class="macts">
+      <button class="savebtn orange" onclick="saveTv()">💾 Guardar</button>
+      <button class="cancelbtn" onclick="closeTvModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app">
+  <aside>
+    <div class="logo"><span class="c">CHINA</span><span class="w">WOK</span></div>
+    <nav>
+      <button id="navM" onclick="goPage('m')">🥩 Marinados</button>
+      <button id="navH" onclick="goPage('h')">💧 Hidratados</button>
+      <button id="navT" onclick="goPage('t')">⏱ Tiempos</button>
+    </nav>
+  </aside>
+
+  <main>
+
+    <!-- MARINADOS -->
+    <div class="page show" id="pageM">
+      <div class="topbar">
+        <div class="title-area">
+          <div class="icon-box">🥩</div>
+          <div><h1 style="color:var(--red)">MARINADOS</h1><div class="sub">Calcula cantidades para tus marinados.</div></div>
+        </div>
+        <div class="acts">
+          <button class="pill" onclick="openRecModal('m')">＋ Nueva</button>
+          <button class="pill" id="editM" onclick="openEditRec('m')">✏ Editar</button>
+          <button class="pill danger" id="delM" onclick="delRecipe('m')">🗑</button>
+        </div>
+      </div>
+      <div class="two">
+        <div class="card"><div class="cbody">
+          <p class="stitle"><span class="step">1.</span> Receta</p>
+          <div class="sw"><select id="selM" onchange="render('m')"></select></div>
+          <hr class="div"/>
+          <p class="stitle"><span class="step">2.</span> Cantidad</p>
+          <div class="iw">
+            <input type="number" id="qtyM" min="0.1" step="0.5" value="1" oninput="render('m')"/>
+            <span id="ulM">kg</span>
+          </div>
+          <div class="strow">
+            <button class="stbtn" onclick="step('m',-1)">−</button>
+            <button class="stbtn" onclick="step('m',1)">+</button>
+          </div>
+          <div class="quick" id="quickM"></div>
+          <div class="urow">
+            <span>Mostrar en:</span>
+            <div class="upills">
+              <button id="ugM" onclick="setUnit('m','g')">g</button>
+              <button id="ukM" onclick="setUnit('m','kg')" class="on">kg</button>
+            </div>
+          </div>
+          <p class="stitle"><span class="step">3.</span> Base (<span id="blblM">1 kg</span>)</p>
+          <div id="baseM" class="blist"></div>
+          <div class="tip">Tip: ingresa los kilos a marinar y calcula automáticamente.</div>
+        </div></div>
+        <div>
+          <div class="hero" id="heroM" style="background:linear-gradient(135deg,var(--green),var(--greend))">
+            <div><small>Vas a marinar:</small><strong id="hqtyM">1 kg</strong></div>
+            <div><small>Total mezcla:</small><strong id="htotM">—</strong></div>
+          </div>
+          <div class="card tcrd">
+            <p class="stitle"><span class="step">4.</span> Cantidades necesarias</p>
+            <table><thead><tr><th>Ingrediente</th><th>Por base</th><th id="colM">Total</th></tr></thead>
+            <tbody id="tbodyM"></tbody></table>
+            <div class="sumgrid">
+              <div class="sumbox"><small>Receta</small><strong id="srM">—</strong></div>
+              <div class="sumbox"><small>Cantidad</small><strong id="sqM">—</strong></div>
+              <div class="sumbox"><small>Total mezcla</small><strong id="stM">—</strong></div>
+            </div>
+            <div class="btns">
+              <button class="btn btn-r" onclick="copy('m')">📋 Copiar</button>
+              <button class="btn btn-g" onclick="reset('m')">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIDRATADOS -->
+    <div class="page" id="pageH">
+      <div class="topbar">
+        <div class="title-area">
+          <div class="icon-box">💧</div>
+          <div><h1 style="color:var(--blue)">HIDRATADOS</h1><div class="sub">Calcula cantidades para tus salsas.</div></div>
+        </div>
+        <div class="acts">
+          <button class="pill" onclick="openRecModal('h')">＋ Nueva</button>
+          <button class="pill" id="editH" onclick="openEditRec('h')">✏ Editar</button>
+          <button class="pill danger" id="delH" onclick="delRecipe('h')">🗑</button>
+        </div>
+      </div>
+      <div class="two">
+        <div class="card"><div class="cbody">
+          <p class="stitle"><span class="step">1.</span> Receta</p>
+          <div class="sw"><select id="selH" onchange="render('h')"></select></div>
+          <hr class="div"/>
+          <p class="stitle"><span class="step">2.</span> Cantidad</p>
+          <div class="iw">
+            <input type="number" id="qtyH" min="0.1" step="0.5" value="2" oninput="render('h')"/>
+            <span id="ulH">lt</span>
+          </div>
+          <div class="strow">
+            <button class="stbtn" onclick="step('h',-1)">−</button>
+            <button class="stbtn" onclick="step('h',1)">+</button>
+          </div>
+          <div class="quick" id="quickH"></div>
+          <div class="urow">
+            <span>Mostrar en:</span>
+            <div class="upills">
+              <button id="ugH" onclick="setUnit('h','g')">g / ml</button>
+              <button id="ukH" onclick="setUnit('h','kg')" class="on">kg / lt</button>
+            </div>
+          </div>
+          <p class="stitle"><span class="step">3.</span> Base (<span id="blblH">2 lt</span>)</p>
+          <div id="baseH" class="blist"></div>
+          <div class="tip" style="background:#eaf4ff;color:#104a7a">Tip: ingresa los litros a preparar.</div>
+        </div></div>
+        <div>
+          <div class="hero" id="heroH" style="background:linear-gradient(135deg,var(--blue),var(--blued))">
+            <div><small>Vas a preparar:</small><strong id="hqtyH">2 lt</strong></div>
+            <div><small>Total mezcla:</small><strong id="htotH">—</strong></div>
+          </div>
+          <div class="card tcrd">
+            <p class="stitle"><span class="step">4.</span> Cantidades necesarias</p>
+            <table><thead><tr><th>Ingrediente</th><th>Por base</th><th id="colH">Total</th></tr></thead>
+            <tbody id="tbodyH"></tbody></table>
+            <div class="sumgrid">
+              <div class="sumbox"><small>Receta</small><strong id="srH">—</strong></div>
+              <div class="sumbox"><small>Cantidad</small><strong id="sqH">—</strong></div>
+              <div class="sumbox"><small>Total mezcla</small><strong id="stH">—</strong></div>
+            </div>
+            <div class="btns">
+              <button class="btn btn-b" onclick="copy('h')">📋 Copiar</button>
+              <button class="btn btn-g" onclick="reset('h')">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIEMPOS -->
+    <div class="page" id="pageT">
+      <div class="topbar">
+        <div class="title-area">
+          <div class="icon-box">⏱</div>
+          <div><h1 style="color:var(--orange)">TIEMPOS DE VIDA</h1><div class="sub">Consulta y gestiona tiempos de almacenamiento.</div></div>
+        </div>
+        <div class="acts">
+          <button class="pill" style="background:#fff3e0;border-color:#f5c78c;color:var(--orange)" onclick="openTvModal()">＋ Nuevo</button>
+        </div>
+      </div>
+      <div class="tv-tabs" id="tvTabs"></div>
+      <div class="tv-ctrl">
+        <input class="tvsearch" id="tvSrch" placeholder="🔍 Buscar producto…" oninput="renderTv()"/>
+        <div class="spills">
+          <button class="spill on" data-s="az" onclick="setSort('az')">A → Z</button>
+          <button class="spill"    data-s="za" onclick="setSort('za')">Z → A</button>
+          <button class="spill"    data-s="ta" onclick="setSort('ta')">⏱ Menor → Mayor</button>
+          <button class="spill"    data-s="td" onclick="setSort('td')">⏱ Mayor → Menor</button>
+        </div>
+      </div>
+      <div class="card" style="overflow-x:auto">
+        <table class="tvtable">
+          <thead><tr>
+            <th onclick="setSort(tvSort==='az'?'za':'az')">Producto ↕</th>
+            <th onclick="setSort(tvSort==='ta'?'td':'ta')">Tiempo de vida ↕</th>
+            <th>Rotulación</th>
+            <th>Almacenamiento</th>
+            <th style="width:32px"></th>
+          </tr></thead>
+          <tbody id="tvBody"></tbody>
+        </table>
+        <div class="empty" id="tvEmpty" style="display:none">🔍 Sin resultados.</div>
+      </div>
+    </div>
+
+  </main>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────
-const DEFAULTS = {
-  marinados: [
-    { id:'ma5',   name:'Pollo M.A x 5gr',        ready:true },
-    { id:'ma15',  name:'Pollo M.A x 15gr',        ready:true },
-    { id:'mh15',  name:'Pollo M.H x 15gr',        base:1, unit:'kg', ingredients:[{name:'Huevo',amount:1,unit:'und'}] },
-    { id:'man15', name:'Pollo Mandarín x 15gr',   base:1, unit:'kg', ingredients:[{name:'Marinador Mandarín',amount:0.080,unit:'kg'},{name:'Huevo',amount:1,unit:'und'}] },
-    { id:'cru',   name:'Pollo Crunch x 120gr',    base:1, unit:'kg', ingredients:[{name:'Marinador Sesame',amount:0.030,unit:'kg'},{name:'Huevo',amount:1,unit:'und'}] },
-    { id:'ses15', name:'Pollo Sesame x 15gr',     base:1, unit:'kg', ingredients:[{name:'Marinador Sesame',amount:0.030,unit:'kg'},{name:'Huevo',amount:1,unit:'und'}] },
-    { id:'lom',   name:'Lomo x 10gr',             base:1, unit:'kg', ingredients:[{name:'Ablandador de carne',amount:0.015,unit:'kg'}] },
-    { id:'ali',   name:'Alitas al Wok',            base:1, unit:'kg', ingredients:[
-        {name:'Batter mix',amount:0.072,unit:'kg'},
-        {name:'Sal',amount:0.007,unit:'kg'},
-        {name:'Ajo finamente picado',amount:0.020,unit:'kg'},
-        {name:'Canela china',amount:0.003,unit:'kg'},
-        {name:'Agua helada',amount:0.185,unit:'lt'},
-        {name:'Kion finamente picado',amount:0.007,unit:'kg'},
-        {name:'Huevo',amount:1,unit:'und'}
-    ]},
-    { id:'tip',   name:'Pollo x 10gr Tipakay',    base:1, unit:'kg', ingredients:[
-        {name:'Sal',amount:0.010,unit:'kg'},
-        {name:'Ajinomoto',amount:0.005,unit:'kg'},
-        {name:'Huevo',amount:1,unit:'und'}
-    ]}
+// ─── DEFAULT DATA ────────────────────────────────────
+const DEF = {
+  m: [
+    {name:'Pollo M.A x 5gr / x 15gr', base:1, unit:'kg', ings:[
+      {n:'Sal',a:0.010,u:'kg'},{n:'Ajinomoto',a:0.005,u:'kg'},{n:'Agua',a:0.010,u:'kg'}]},
+    {name:'Pollo M.A x 10gr Sopa', base:1, unit:'kg', ings:[
+      {n:'Sal',a:0.010,u:'kg'},{n:'Ajinomoto',a:0.005,u:'kg'},{n:'Agua',a:0.010,u:'kg'}]},
+    {name:'Pollo x 10gr Tipakay', base:1, unit:'kg', ings:[
+      {n:'Sal',a:0.010,u:'kg'},{n:'Ajinomoto',a:0.005,u:'kg'},{n:'Huevo',a:1,u:'und'}]},
+    {name:'Tequeño de Lomo', base:11, unit:'und', ings:[
+      {n:'Lomo picado',a:0.068,u:'kg'},{n:'Sal',a:0.001,u:'kg'},{n:'Ajinomoto',a:0.001,u:'kg'},{n:'Agua',a:0.008,u:'kg'}]},
+    {name:'Pollo M.H x 15gr', base:1, unit:'kg', ings:[
+      {n:'Sal',a:0.010,u:'kg'},{n:'Ajinomoto',a:0.005,u:'kg'},{n:'Huevo',a:1,u:'und'}]},
+    {name:'Pollo Sesame x 15gr', base:1, unit:'kg', ings:[
+      {n:'Marinador Sesame',a:0.040,u:'kg'},{n:'Huevo',a:1,u:'und'}]},
+    {name:'Pollo Mandarín x 15gr', base:1, unit:'kg', ings:[
+      {n:'Marinador Mandarín',a:0.090,u:'kg'},{n:'Huevo',a:1,u:'und'}]},
+    {name:'Lomo x 10gr', base:1, unit:'kg', ings:[
+      {n:'Ablandador de carne',a:0.015,u:'kg'}]},
+    {name:'Pollo Crunch x 120gr', base:1, unit:'kg', ings:[
+      {n:'Marinador Sesame',a:0.040,u:'kg'},{n:'Huevo',a:1,u:'und'}]},
+    {name:'Alitas al Wok', base:1, unit:'kg', ings:[
+      {n:'Batter mix',a:0.072,u:'kg'},{n:'Sal',a:0.007,u:'kg'},
+      {n:'Ajo finamente picado',a:0.020,u:'kg'},{n:'Canela china',a:0.003,u:'kg'},
+      {n:'Agua helada',a:0.185,u:'kg'},{n:'Kion finamente picado',a:0.007,u:'kg'}]},
+    {name:'Relleno de Wantán', base:1, unit:'kg', ings:[
+      {n:'Kion picado',a:0.005,u:'kg'},{n:'Sal',a:0.010,u:'kg'}]}
   ],
-  hidratados: [
-    { id:'taypa', name:'Salsa Taypa',              base:0.5, unit:'kg pollo', baseLabel:'Por ½ kg pollo', ingredients:[
-        {name:'Fondo de Ave',amount:0.330,unit:'lt'},
-        {name:'Condimento Chaufa',amount:0.025,unit:'kg'},
-        {name:'Sillao',amount:0.010,unit:'lt'}
-    ]},
-    { id:'manS',  name:'Salsa Mandarín',           base:2, unit:'lt', ingredients:[
-        {name:'Concentrado Mandarín',amount:0.530,unit:'lt'},
-        {name:'Agua',amount:1.470,unit:'lt'}
-    ]},
-    { id:'hon',   name:'Salsa Honey',              base:2, unit:'lt', ingredients:[
-        {name:'Concentrado Honey',amount:1.080,unit:'lt'},
-        {name:'Agua',amount:0.860,unit:'lt'},
-        {name:'Chuño',amount:0.050,unit:'kg'}
-    ]},
-    { id:'tal',   name:'Salsa Tallarín Saltado / Lomo', base:2, unit:'lt', ingredients:[
-        {name:'Concentrado Tallarín Saltado',amount:0.460,unit:'lt'},
-        {name:'Fondo de Ave',amount:1.540,unit:'lt'}
-    ]},
-    { id:'sesS',  name:'Salsa Sesame',             base:2, unit:'lt', ingredients:[
-        {name:'Concentrado Sesame',amount:0.210,unit:'lt'},
-        {name:'Fondo de Ave',amount:1.790,unit:'lt'}
-    ]},
-    { id:'tipS',  name:'Tipakay',                  base:0.5, unit:'kg pollo', baseLabel:'Por ½ kg pollo', ingredients:[
-        {name:'Concentrado Tamarindo',amount:0.210,unit:'lt'},
-        {name:'Agua',amount:0.310,unit:'lt'}
-    ]},
-    { id:'tamC',  name:'Salsa Tamarindo Counter',  base:3, unit:'lt', ingredients:[
-        {name:'Concentrado Tamarindo',amount:1.000,unit:'lt'},
-        {name:'Agua',amount:2.000,unit:'lt'},
-        {name:'Chuño',amount:0.080,unit:'kg'}
-    ]},
-    { id:'chan',  name:'Chancho Dulce',             base:30, unit:'lonjas', ingredients:[
-        {name:'Concentrado Tamarindo',amount:0.215,unit:'lt'},
-        {name:'Agua',amount:0.215,unit:'lt'},
-        {name:'Sillao Oscuro',amount:0.060,unit:'lt'}
-    ]}
+  h: [
+    {name:'Salsa Taypa', base:0.5, unit:'kg pollo', ings:[
+      {n:'Fondo de Ave',a:0.330,u:'lt'},{n:'Condimento Chaufa',a:0.025,u:'kg'},{n:'Sillao',a:0.010,u:'lt'}]},
+    {name:'Salsa Mandarín', base:2, unit:'lt', ings:[
+      {n:'Concentrado Mandarín',a:0.530,u:'lt'},{n:'Agua',a:1.470,u:'lt'}]},
+    {name:'Salsa Honey', base:2, unit:'lt', ings:[
+      {n:'Concentrado Honey',a:1.080,u:'lt'},{n:'Agua',a:0.860,u:'lt'},{n:'Chuño',a:0.050,u:'kg'}]},
+    {name:'Salsa Tallarín Saltado / Lomo', base:2, unit:'lt', ings:[
+      {n:'Concentrado Tallarín Saltado',a:0.460,u:'lt'},{n:'Fondo de Ave',a:1.540,u:'lt'}]},
+    {name:'Salsa Sesame', base:2, unit:'lt', ings:[
+      {n:'Concentrado Sesame',a:0.210,u:'lt'},{n:'Fondo de Ave',a:1.790,u:'lt'}]},
+    {name:'Tipakay', base:0.5, unit:'kg pollo', ings:[
+      {n:'Concentrado Tamarindo',a:0.210,u:'lt'},{n:'Agua',a:0.310,u:'lt'}]},
+    {name:'Salsa Tamarindo Counter', base:3, unit:'lt', ings:[
+      {n:'Concentrado Tamarindo',a:1.000,u:'lt'},{n:'Agua',a:2.000,u:'lt'},{n:'Chuño',a:0.080,u:'kg'}]},
+    {name:'Chancho Dulce', base:30, unit:'lonjas', ings:[
+      {n:'Concentrado Tamarindo',a:0.215,u:'lt'},{n:'Agua',a:0.215,u:'lt'},{n:'Sillao Oscuro',a:0.060,u:'lt'}]}
+  ],
+  t: [
+    // ALMACÉN
+    {c:'almacen',n:'Ablandador de carne',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Ablandador de carne (Abierto)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Producto fileado'},
+    {c:'almacen',n:'Aceite de ajonjolí',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Aceite vegetal',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Ajinomoto',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Ajinomoto porcionado',v:'5 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'almacen',n:'Anís estrella',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Anís estrella (Abierto)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Producto fileado'},
+    {c:'almacen',n:'Arroz',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Arroz porcionado',v:'5 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'almacen',n:'Batter',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Batter (Abierto)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Producto fileado'},
+    {c:'almacen',n:'Canela china',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Canela china (Abierta)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Producto fileado'},
+    {c:'almacen',n:'Chuño',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Chuño porcionado',v:'5 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'almacen',n:'Concentrados',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Condimento Chaufa',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Condimento Chaufa porcionado',v:'5 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'almacen',n:'Fondo de pollo',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Harina',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Harina porcionada',v:'15 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'almacen',n:'Huevo entero',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Jarabes (gaseosas)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Marinadores',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Mayonesa',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Sal',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Semillas ajonjolí',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Sillao counter / servicio',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Sillao oscuro (cocina)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'almacen',n:'Tallarín spaguetti',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    // ESTACIÓN
+    {c:'estacion',n:'Aceite de ajonjolí',v:'4 DÍAS',r:'Etiqueta de producción',a:'Dispensador plástico'},
+    {c:'estacion',n:'Aceite en balde de aluminio (del wok 1 al 2)',v:'1 DÍA',r:'Etiqueta de producción',a:'Balde de acero'},
+    {c:'estacion',n:'Aceite vegetal (limpio)',v:'4 DÍAS',r:'Etiqueta de producción',a:'Dispensador plástico'},
+    {c:'estacion',n:'Ají amarillo en juliana',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Ajinomoto',v:'4 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Ajo picado',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Ajonjolí tostado',v:'4 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Apio en juliana',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Arroz blanco cocido',v:'12 HORAS',r:'Etiqueta de producción',a:'Olla'},
+    {c:'estacion',n:'Brócoli blanqueado',v:'12 HORAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Cebolla china en bastones',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Cebolla china parte blanca',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Cebolla china picada',v:'1 DÍA',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Cebolla roja picada',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Cecina en cubos',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Chuño para empanizar',v:'4 HORAS',r:'Etiqueta de producción',a:'Bowl de acero'},
+    {c:'estacion',n:'Chuño para ligar',v:'4 HORAS',r:'Etiqueta de producción',a:'Bowl de acero'},
+    {c:'estacion',n:'Choysan blanqueado',v:'8 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Col china porcionada',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Fondo de ave / sopa',v:'12 HORAS',r:'Etiqueta de producción',a:'Envase de acero'},
+    {c:'estacion',n:'Frejolito chino',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Harina',v:'4 HORAS',r:'Etiqueta de producción',a:'Bowl de acero'},
+    {c:'estacion',n:'Hoja de col blanqueada',v:'8 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Huevo batido',v:'12 HORAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Kion picado',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Lomo x 10gr',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Mayonesa oriental',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Mix de sopa blanqueada',v:'8 HORAS',r:'Etiqueta de producción',a:'Envase de acero'},
+    {c:'estacion',n:'Mix lomo saltado',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Mix saltado pollo',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Mix sopas',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Patacones',v:'12 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Pechuga marinada',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Pimiento rojo en brunoise',v:'12 HORAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Pimiento rojo en juliana',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Pimiento rojo en triángulos',v:'2 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Plátano lonja',v:'12 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Pollo marinado (5gr, 10gr, 15gr, 120gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Pollo sancochado x 10gr para sopa',v:'8 HORAS',r:'Etiqueta de producción',a:'Envase de acero'},
+    {c:'estacion',n:'Sal',v:'4 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Salsas hidratadas',v:'12 HORAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Sillao counter',v:'12 HORAS',r:'Etiqueta de producción',a:'Dispensador plástico'},
+    {c:'estacion',n:'Sillao oscuro para chaufa',v:'4 DÍAS',r:'Etiqueta de producción',a:'Envase plástico'},
+    {c:'estacion',n:'Tallarín chino precocido',v:'12 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Tamarindo counter',v:'6 HORAS',r:'Etiqueta de producción',a:'Envase de acero'},
+    {c:'estacion',n:'Tomate en gajos',v:'1 DÍA',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Vainitas blanqueadas',v:'12 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'estacion',n:'Wantan armado',v:'1 DÍA',r:'Etiqueta de producción',a:'Bandeja de acero'},
+    {c:'estacion',n:'Wantan blanqueado sopa',v:'8 HORAS',r:'Etiqueta de producción',a:'Envase de acero'},
+    {c:'estacion',n:'Wantan para sopas - barquito',v:'24 HORAS',r:'Etiqueta de producción',a:'Envase de acero'},
+    {c:'estacion',n:'Zanahoria blanqueada',v:'12 HORAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    // VERDURAS
+    {c:'verduras',n:'Mix zanahoria/vainita (Taypa)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'verduras',n:'Mix cebolla/apio (Taypa)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'verduras',n:'Col en bastones porcionada',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'verduras',n:'Tomate porcionado',v:'1 DÍA',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'verduras',n:'Cebolla parte blanca porcionada',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'verduras',n:'Cebolla china en bastones',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    {c:'verduras',n:'Pimiento en bastones porcionado',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa porcionadora'},
+    // MARINADOS PORCIONADOS
+    {c:'marinados_tv',n:'Alitas (6 un.)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Honey (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Chijaukay (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Filete por 120gr (6 un.)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Tipakay (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Mandarín (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Tausi (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Taypa (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Criollo (500gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Pollo para Chaufa (480gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    {c:'marinados_tv',n:'Lomo x 10gr (240gr)',v:'2 DÍAS',r:'Etiqueta de producción',a:'Bolsa en tapper. Refrig. 0°C–4°C'},
+    // CONGELACIÓN
+    {c:'congelacion',n:'Alas',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Cecina',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Cerdo (panceta)',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Filete de pechuga',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Lomo',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Papas',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Papas porcionadas',v:'7 DÍAS',r:'Etiqueta',a:'Envase cerrado'},
+    {c:'congelacion',n:'Relleno de wantán',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'},
+    {c:'congelacion',n:'Wantán armado',v:'SEGÚN EMPAQUE',r:'Fecha proveedor',a:'Empaque original'}
   ]
 };
 
-// ── STATE ─────────────────────────────────────────────────────
-let section = 'marinados';
-let displayUnit = 'kg';  // 'kg' or 'g'
-let isEditing = false;
-let data = loadData();
+// ─── STATE ───────────────────────────────────────────
+let D = loadD();
+let du = {m:'kg', h:'kg'};
+let tvCat = 'almacen';
+let tvSort = 'az';
+let recSec = null, recIdx = null, ingCnt = 0;
 
-function loadData() {
-  try {
-    const s = localStorage.getItem('cw_data_v2');
-    if (s) return JSON.parse(s);
-  } catch(e) {}
-  return JSON.parse(JSON.stringify(DEFAULTS));
+const TV_CATS = [
+  {id:'almacen',   lbl:'📦 Almacén'},
+  {id:'estacion',  lbl:'🍳 Estación'},
+  {id:'verduras',  lbl:'🥦 Verduras'},
+  {id:'marinados_tv', lbl:'🥩 Marinados'},
+  {id:'congelacion',  lbl:'❄️ Congelación'}
+];
+
+function loadD(){
+  try{ const s=localStorage.getItem('cw6'); if(s) return JSON.parse(s); }catch(e){}
+  return JSON.parse(JSON.stringify(DEF));
 }
-function saveData() {
-  try { localStorage.setItem('cw_data_v2', JSON.stringify(data)); } catch(e) {}
-}
+function saveD(){ localStorage.setItem('cw6',JSON.stringify(D)); }
 
-// ── HELPERS ───────────────────────────────────────────────────
-const $ = id => document.getElementById(id);
-function getRecipes() { return data[section]; }
-function getSelected() { return getRecipes()[Number($('recipeSelect').value || 0)]; }
-function getQty() { return parseFloat($('quantity').value) || 1; }
+// ─── UTILS ───────────────────────────────────────────
+const $=id=>document.getElementById(id);
+function cl(v){ return Number.isInteger(v)?String(v):String(+(+v).toFixed(3)); }
 
-function fmtAmt(amount, unit) {
-  if (unit === 'und') return n(amount) + ' und';
-  if (displayUnit === 'g') return Math.round(amount * 1000) + ' g';
-  // kg — up to 3 decimals, strip trailing zeros
-  return (+amount.toFixed(3)).toString() + ' ' + (unit === 'lt' ? 'lt' : 'kg');
-}
-
-function n(v) {
-  return Number.isInteger(v) ? v : +(+v.toFixed(3));
+function fmtB(a,u){ return u==='und'?cl(a)+' und':cl(a)+' '+u; }
+function fmtR(a,u,d){
+  if(u==='und') return cl(Math.round(a*10)/10)+' und';
+  if(d==='g') return Math.round(a*1000)+(u==='lt'?' ml':' g');
+  return cl(+a.toFixed(3))+' '+u;
 }
 
-// ── SECTION ───────────────────────────────────────────────────
-function setSection(s) {
-  if (isEditing) cancelEdit();
-  section = s;
-  document.body.className = s;
-  $('btnM').classList.toggle('active', s === 'marinados');
-  $('btnH').classList.toggle('active', s === 'hidratados');
-  fillSelect();
-  renderQuick();
-  render();
+function t2min(t){
+  t=t.toUpperCase();
+  if(t.includes('EMPAQUE')) return 999999;
+  const m=t.match(/(\d+\.?\d*)\s*(HORA|DÍA|DIA|SEMANA|MES|MIN)/);
+  if(!m) return 999999;
+  const n=parseFloat(m[1]),u=m[2];
+  if(u.startsWith('HORA')) return n*60;
+  if(u.startsWith('DÍA')||u.startsWith('DIA')) return n*1440;
+  if(u.startsWith('SEMANA')) return n*10080;
+  if(u.startsWith('MES')) return n*43200;
+  return n;
 }
 
-function fillSelect() {
-  $('recipeSelect').innerHTML = getRecipes()
-    .map((r,i) => `<option value="${i}">${r.name}</option>`)
-    .join('');
+function badge(t){
+  const u=t.toUpperCase();
+  if(u.includes('EMPAQUE')) return `<span class="badge bemp">${t}</span>`;
+  if(u.includes('HORA')){
+    const h=parseFloat(u);
+    if(h<=4) return `<span class="badge bd1">${t}</span>`;
+    if(h<=8) return `<span class="badge bh">${t}</span>`;
+    return `<span class="badge bh">${t}</span>`;
+  }
+  if(u.includes('DÍA')||u.includes('DIA')){
+    const d=parseFloat(u);
+    if(d<=1) return `<span class="badge bd1">${t}</span>`;
+    if(d<=2) return `<span class="badge bd2">${t}</span>`;
+    if(d<=4) return `<span class="badge bd4">${t}</span>`;
+    if(d<=5) return `<span class="badge bd5">${t}</span>`;
+    return `<span class="badge bd7">${t}</span>`;
+  }
+  return `<span class="badge bemp">${t}</span>`;
 }
 
-function renderQuick() {
-  const vals = section === 'marinados' ? [1,3,5,10,15] : [0.5,1,2,3,5];
-  $('quickButtons').innerHTML = vals
-    .map(v => `<button onclick="setQty(${v})" data-val="${v}">${v}</button>`)
-    .join('');
+function toast(msg){
+  const t=$('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._x);
+  t._x=setTimeout(()=>t.classList.remove('show'),2400);
 }
 
-function setQty(v) {
-  $('quantity').value = v;
-  render();
-}
-
-function stepQty(dir) {
-  const r = getSelected();
-  const step = (r && (r.unit === 'lonjas' || r.unit === 'und')) ? 1 : 0.5;
-  const cur = parseFloat($('quantity').value) || 1;
-  $('quantity').value = Math.max(0.1, +(cur + dir * step).toFixed(3));
-  render();
-}
-
-function setUnit(u) {
-  displayUnit = u;
-  $('unitG').classList.toggle('active', u === 'g');
-  $('unitKg').classList.toggle('active', u === 'kg');
-  render();
-}
-
-// ── RENDER ────────────────────────────────────────────────────
-function render() {
-  if (isEditing) return; // don't overwrite edit mode
-  const r = getSelected();
-  if (!r) return;
-  const qty = getQty();
-  const mult = r.base ? qty / r.base : 1;
-  const unitLbl = r.unit || 'kg';
-
-  // hero
-  $('heroLabel').textContent = section === 'marinados' ? 'A marinar' : 'A preparar';
-  $('heroQty').textContent = n(qty) + ' ' + unitLbl;
-  $('unitLabel').textContent = unitLbl;
-
-  // quick button highlights
-  document.querySelectorAll('.quick-row button').forEach(btn => {
-    btn.classList.toggle('active', parseFloat(btn.dataset.val) === qty);
+// ─── NAVIGATION ──────────────────────────────────────
+function goPage(p){
+  ['m','h','t'].forEach(x=>{
+    $('page'+x.toUpperCase()).classList.toggle('show',x===p);
+    const b=$('nav'+x.toUpperCase());
+    b.className=x===p?'act-'+p:'';
   });
+}
 
-  // edit bar label
-  const baseLabel = r.baseLabel || ('Base: ' + n(r.base || 1) + ' ' + unitLbl);
-  $('editBarLabel').textContent = baseLabel;
-  $('editToggleBtn').style.display = r.ready ? 'none' : '';
+// ─── CALCULATOR ──────────────────────────────────────
+function initCalc(s){
+  fillSel(s);
+  fillQuick(s);
+  render(s);
+}
 
-  if (r.ready) {
-    $('resultLabel').textContent = 'Sin preparación';
-    $('resultBody').innerHTML = `<div class="ready-msg">✅ Este producto llega marinado — sin insumos adicionales.</div>`;
-    $('heroTotal').textContent = '—';
-    return;
+function fillSel(s){
+  $('sel'+s.toUpperCase()).innerHTML=
+    D[s].map((r,i)=>`<option value="${i}">${r.name}</option>`).join('');
+}
+
+function fillQuick(s){
+  const vals=s==='m'?[1,3,5,10,15]:[0.5,1,2,3,5];
+  $('quick'+s.toUpperCase()).innerHTML=
+    vals.map(v=>`<button onclick="setQ('${s}',${v})" data-v="${v}">${v}</button>`).join('');
+}
+
+function getRec(s){ return D[s][Number($('sel'+s.toUpperCase()).value||0)]; }
+function getQ(s){ return parseFloat($('qty'+s.toUpperCase()).value)||1; }
+
+function setQ(s,v){ $('qty'+s.toUpperCase()).value=v; render(s); }
+
+function step(s,d){
+  const r=getRec(s);
+  const st=(r&&(r.unit==='lonjas'||r.unit==='und'))?1:0.5;
+  const cur=getQ(s);
+  $('qty'+s.toUpperCase()).value=Math.max(0.1,+(cur+d*st).toFixed(3));
+  render(s);
+}
+
+function setUnit(s,u){
+  du[s]=u;
+  $('ug'+s.toUpperCase()).classList.toggle('on',u==='g');
+  $('uk'+s.toUpperCase()).classList.toggle('on',u==='kg');
+  render(s);
+}
+
+function render(s){
+  const S=s.toUpperCase();
+  const r=getRec(s); if(!r) return;
+  const qty=getQ(s);
+  const mult=r.base?qty/r.base:1;
+  const ul=r.unit||'kg';
+
+  $('ul'+S).textContent=ul;
+  $('hqty'+S).textContent=cl(qty)+' '+ul;
+  $('blbl'+S).textContent=cl(r.base||1)+' '+ul;
+  $('sr'+S).textContent=r.name.length>16?r.name.slice(0,16)+'…':r.name;
+  $('sq'+S).textContent=cl(qty)+' '+ul;
+  $('col'+S).textContent='Para '+cl(qty)+' '+ul;
+
+  // quick highlights
+  document.querySelectorAll('#quick'+S+' button').forEach(b=>
+    b.classList.toggle('on',parseFloat(b.dataset.v)===qty));
+
+  const ings=r.ings||[];
+
+  // base list
+  $('base'+S).innerHTML=r.ready
+    ?`<div class="brow"><span>Ya llega listo</span><strong>—</strong></div>`
+    :ings.map(i=>`<div class="brow"><span>${i.n}</span><strong>${fmtB(i.a,i.u)}</strong></div>`).join('');
+
+  // results
+  if(r.ready){
+    $('tbody'+S).innerHTML=`<tr><td colspan="3"><div class="rdy">✅ Este producto llega listo. Sin insumos adicionales.</div></td></tr>`;
+    $('htot'+S).textContent='—'; $('st'+S).textContent='—'; return;
+  }
+  if(!ings.length){
+    $('tbody'+S).innerHTML=`<tr><td colspan="3" style="color:var(--muted)">Sin ingredientes.</td></tr>`;
+    $('htot'+S).textContent='—'; $('st'+S).textContent='—'; return;
   }
 
-  $('resultLabel').textContent = 'Ingredientes necesarios';
-
-  // table
-  let totalKg = 0;
-  let totalUnds = 0;
-  const rows = (r.ingredients || []).map(ing => {
-    const total = ing.amount * mult;
-    if (ing.unit === 'und') totalUnds += total;
-    else totalKg += total;
-    return `<tr>
-      <td class="ing-name">${ing.name}</td>
-      <td class="per-unit">${fmtAmt(ing.amount, ing.unit)}<span style="font-size:11px;color:#bbb"> /base</span></td>
-      <td class="total-amt">${fmtAmt(total, ing.unit)}</td>
-    </tr>`;
+  let tkg=0,tund=0;
+  $('tbody'+S).innerHTML=ings.map(i=>{
+    const tot=i.a*mult;
+    if(i.u==='und') tund+=tot; else tkg+=tot;
+    return `<tr><td>${i.n}</td>
+      <td style="color:var(--muted);font-size:12px">${fmtB(i.a,i.u)}</td>
+      <td class="amt">${fmtR(tot,i.u,du[s])}</td></tr>`;
   }).join('');
 
-  $('resultBody').innerHTML = `
-    <table class="result-table">
-      <thead><tr>
-        <th>Insumo</th>
-        <th>Por base</th>
-        <th>Total</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
-
-  // hero total
-  let totalParts = [];
-  if (totalKg > 0) totalParts.push(displayUnit === 'g' ? Math.round(totalKg*1000)+' g' : n(+totalKg.toFixed(3))+' kg');
-  if (totalUnds > 0) totalParts.push(n(totalUnds)+' und');
-  $('heroTotal').textContent = totalParts.join(' + ') || '—';
+  const pts=[];
+  if(tkg>0)  pts.push(du[s]==='g'?Math.round(tkg*1000)+(s==='h'?' ml':' g'):cl(+tkg.toFixed(3))+' '+(s==='h'?'lt':'kg'));
+  if(tund>0) pts.push(cl(Math.round(tund*10)/10)+' und');
+  const tot=pts.join(' + ')||'—';
+  $('htot'+S).textContent=tot;
+  $('st'+S).textContent=tot;
 }
 
-// ── EDIT ──────────────────────────────────────────────────────
-let editSnapshot = null;
-
-function toggleEdit() {
-  if (isEditing) cancelEdit();
-  else enterEdit();
+function copy(s){
+  const r=getRec(s); const qty=getQ(s); const mult=r.base?qty/r.base:1;
+  let txt=`${r.name} — ${cl(qty)} ${r.unit||'kg'}\n`;
+  if(r.ready) txt+='Llega listo.';
+  else (r.ings||[]).forEach(i=>{ txt+=`• ${i.n}: ${fmtR(i.a*mult,i.u,du[s])}\n`; });
+  navigator.clipboard.writeText(txt).then(()=>toast('✓ Copiado'));
 }
 
-function enterEdit() {
-  const r = getSelected();
-  if (!r || r.ready) return;
-  isEditing = true;
-  editSnapshot = JSON.parse(JSON.stringify(r.ingredients));
+function reset(s){ $('qty'+s.toUpperCase()).value=getRec(s)?.base||1; render(s); }
 
-  $('editToggleBtn').textContent = '✕ Cancelar';
-  $('resultLabel').textContent = 'Editar ingredientes';
-
-  renderEditMode(r);
+// ─── RECIPE MODAL ────────────────────────────────────
+function openRecModal(s){
+  recSec=s; recIdx=null;
+  $('recMTitle').textContent='Nueva receta — '+(s==='m'?'Marinado':'Hidratado');
+  $('mName').value=''; $('mBase').value='1';
+  $('mUnit').value=s==='m'?'kg':'lt';
+  $('mReady').checked=false;
+  $('ingSection').style.display='';
+  $('ingRows').innerHTML=''; addIngRow();
+  $('recMbg').classList.add('open');
+  setTimeout(()=>$('mName').focus(),80);
 }
 
-function renderEditMode(r) {
-  const rows = (r.ingredients || []).map((ing, i) => `
-    <div class="edit-ing-row" id="edit-row-${i}">
-      <input class="inp-name" value="${ing.name}" oninput="syncEdit(${i},'name',this.value)" placeholder="Nombre"/>
-      <input class="inp-amt" type="number" step="0.001" value="${ing.amount}" oninput="syncEdit(${i},'amount',this.value)" placeholder="Cant."/>
-      <input class="inp-unit" value="${ing.unit}" oninput="syncEdit(${i},'unit',this.value)" placeholder="u."/>
-      <button class="del-btn" onclick="delIng(${i})">🗑</button>
-    </div>`).join('');
-
-  $('resultBody').innerHTML = `
-    <div id="edit-rows">${rows}</div>
-    <div class="add-row">
-      <input class="inp-name" id="newName" placeholder="Nuevo insumo"/>
-      <input class="inp-amt" type="number" step="0.001" id="newAmt" placeholder="Cant."/>
-      <input class="inp-unit" id="newUnit" placeholder="kg"/>
-      <button class="add-btn" onclick="addIng()">+</button>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:14px">
-      <button class="btn-save" onclick="saveEdit()">💾 Guardar</button>
-      <button class="btn-cancel" onclick="cancelEdit()">Cancelar</button>
-    </div>`;
+function openEditRec(s){
+  const r=D[s][Number($('sel'+s.toUpperCase()).value||0)];
+  if(!r) return;
+  recSec=s; recIdx=Number($('sel'+s.toUpperCase()).value||0);
+  $('recMTitle').textContent='Editar receta';
+  $('mName').value=r.name; $('mBase').value=r.base||1; $('mUnit').value=r.unit||'kg';
+  $('mReady').checked=!!r.ready;
+  $('ingSection').style.display=r.ready?'none':'';
+  $('ingRows').innerHTML='';
+  (r.ings||[]).forEach(i=>addIngRow(i.n,i.a,i.u));
+  $('recMbg').classList.add('open');
 }
 
-function syncEdit(i, field, val) {
-  const r = getSelected();
-  if (field === 'amount') r.ingredients[i].amount = parseFloat(val) || 0;
-  else r.ingredients[i][field] = val;
+function closeRecModal(e){
+  if(!e||e.target===$('recMbg')) $('recMbg').classList.remove('open');
 }
 
-function delIng(i) {
-  const r = getSelected();
-  r.ingredients.splice(i, 1);
-  renderEditMode(r);
+function onReadyChg(){ $('ingSection').style.display=$('mReady').checked?'none':''; }
+
+function addIngRow(n='',a='',u='kg'){
+  const id=ingCnt++;
+  const d=document.createElement('div');
+  d.className='ingrow'; d.id='ir'+id;
+  d.innerHTML=`<input type="text" value="${n}" placeholder="Nombre"/>
+    <input type="number" value="${a}" placeholder="0.000" step="0.001" min="0" style="text-align:right"/>
+    <input type="text" value="${u}" placeholder="kg"/>
+    <button class="deling" onclick="document.getElementById('ir${id}').remove()">✕</button>`;
+  $('ingRows').appendChild(d);
 }
 
-function addIng() {
-  const name = $('newName').value.trim();
-  const amt = parseFloat($('newAmt').value);
-  const unit = $('newUnit').value.trim() || 'kg';
-  if (!name || !amt) { showToast('Completa nombre y cantidad'); return; }
-  const r = getSelected();
-  r.ingredients.push({name, amount: amt, unit});
-  renderEditMode(r);
-  showToast('Insumo agregado');
+function saveRecipe(){
+  const name=$('mName').value.trim();
+  const base=parseFloat($('mBase').value);
+  const unit=$('mUnit').value.trim()||'kg';
+  const ready=$('mReady').checked;
+  if(!name){ toast('Escribe el nombre'); return; }
+  if(!base||base<=0){ toast('Cantidad base inválida'); return; }
+  const ings=[];
+  if(!ready){
+    for(const row of $('ingRows').querySelectorAll('.ingrow')){
+      const inp=row.querySelectorAll('input');
+      const n=inp[0].value.trim(),a=parseFloat(inp[1].value),u=inp[2].value.trim()||'kg';
+      if(!n||!a){ toast('Completa todos los ingredientes'); return; }
+      ings.push({n,a,u});
+    }
+  }
+  const rec={name,base,unit,ings};
+  if(ready) rec.ready=true;
+  if(recIdx!==null){ D[recSec][recIdx]=rec; toast('✓ Receta actualizada'); }
+  else{ D[recSec].push(rec); toast('✓ Receta guardada'); }
+  saveD(); fillSel(recSec);
+  $('sel'+recSec.toUpperCase()).value=recIdx!==null?recIdx:D[recSec].length-1;
+  closeRecModal(); render(recSec);
 }
 
-function saveEdit() {
-  saveData();
-  isEditing = false;
-  $('editToggleBtn').textContent = '✏ Editar';
-  $('resultLabel').textContent = 'Ingredientes necesarios';
-  showToast('✓ Cambios guardados');
-  render();
+function delRecipe(s){
+  const idx=Number($('sel'+s.toUpperCase()).value||0);
+  const r=D[s][idx]; if(!r) return;
+  if(!confirm(`¿Eliminar "${r.name}"?`)) return;
+  D[s].splice(idx,1); saveD(); fillSel(s);
+  $('sel'+s.toUpperCase()).value=0; render(s); toast('Receta eliminada');
 }
 
-function cancelEdit() {
-  const r = getSelected();
-  if (editSnapshot) r.ingredients = editSnapshot;
-  editSnapshot = null;
-  isEditing = false;
-  $('editToggleBtn').textContent = '✏ Editar';
-  $('resultLabel').textContent = 'Ingredientes necesarios';
-  render();
+// ─── TIEMPOS DE VIDA ─────────────────────────────────
+function initTv(){
+  $('tvTabs').innerHTML=TV_CATS.map(c=>
+    `<button class="tvtab${c.id===tvCat?' on':''}" onclick="setTvCat('${c.id}')">${c.lbl}</button>`
+  ).join('');
+  renderTv();
 }
 
-// ── ACTIONS ───────────────────────────────────────────────────
-function copyResults() {
-  const r = getSelected();
-  const qty = getQty();
-  const mult = r.base ? qty / r.base : 1;
-  let text = `${r.name} — ${n(qty)} ${r.unit || 'kg'}\n`;
-  if (r.ready) text += 'Llega listo. Sin insumos adicionales.';
-  else (r.ingredients || []).forEach(ing => {
-    text += `• ${ing.name}: ${fmtAmt(ing.amount * mult, ing.unit)}\n`;
-  });
-  navigator.clipboard.writeText(text).then(() => showToast('Copiado al portapapeles ✓'));
+function setTvCat(cat){
+  tvCat=cat;
+  document.querySelectorAll('.tvtab').forEach((b,i)=>b.classList.toggle('on',TV_CATS[i].id===cat));
+  renderTv();
 }
 
-function resetApp() {
-  if (isEditing) cancelEdit();
-  $('quantity').value = 1;
-  render();
+function setSort(s){
+  tvSort=s;
+  document.querySelectorAll('.spill').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
+  renderTv();
 }
 
-function showToast(msg) {
-  const t = $('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2400);
+function renderTv(){
+  const q=($('tvSrch').value||'').toLowerCase();
+  let all=D.t.filter(r=>r.c===tvCat);
+  if(q) all=all.filter(r=>r.n.toLowerCase().includes(q)||r.a.toLowerCase().includes(q)||r.v.toLowerCase().includes(q));
+
+  // split: fixed time vs según empaque
+  let fixed=all.filter(r=>!r.v.toUpperCase().includes('EMPAQUE'));
+  let semp=all.filter(r=>r.v.toUpperCase().includes('EMPAQUE'));
+
+  // sort fixed
+  if(tvSort==='az')  fixed.sort((a,b)=>a.n.localeCompare(b.n,'es'));
+  if(tvSort==='za')  fixed.sort((a,b)=>b.n.localeCompare(a.n,'es'));
+  if(tvSort==='ta')  fixed.sort((a,b)=>t2min(a.v)-t2min(b.v));
+  if(tvSort==='td')  fixed.sort((a,b)=>t2min(b.v)-t2min(a.v));
+  // según empaque always A-Z
+  semp.sort((a,b)=>a.n.localeCompare(b.n,'es'));
+
+  if(!all.length){
+    $('tvBody').innerHTML='';
+    $('tvEmpty').style.display='';
+    return;
+  }
+  $('tvEmpty').style.display='none';
+
+  function row(r){
+    const ri=D.t.indexOf(r);
+    return `<tr>
+      <td style="font-weight:600">${r.n}</td>
+      <td>${badge(r.v)}</td>
+      <td style="color:var(--muted);font-size:13px">${r.r}</td>
+      <td style="font-size:13px">${r.a}</td>
+      <td><button class="delbtn" onclick="delTv(${ri})" title="Eliminar">✕</button></td>
+    </tr>`;
+  }
+
+  let html=fixed.map(row).join('');
+  if(semp.length){
+    html+=`<tr class="sep"><td colspan="5">📦 Según empaque del proveedor</td></tr>`;
+    html+=semp.map(row).join('');
+  }
+  $('tvBody').innerHTML=html;
 }
 
-// ── INIT ──────────────────────────────────────────────────────
-fillSelect();
-renderQuick();
-render();
+function delTv(i){
+  const r=D.t[i]; if(!r) return;
+  if(!confirm(`¿Eliminar "${r.n}"?`)) return;
+  D.t.splice(i,1); saveD(); renderTv(); toast('Eliminado');
+}
+
+function openTvModal(){
+  $('tvName').value=''; $('tvTime').value='';
+  $('tvRot').value='Etiqueta de producción';
+  $('tvAlm').value=''; $('tvCatSel').value=tvCat;
+  $('tvMbg').classList.add('open');
+  setTimeout(()=>$('tvName').focus(),80);
+}
+
+function closeTvModal(e){
+  if(!e||e.target===$('tvMbg')) $('tvMbg').classList.remove('open');
+}
+
+function saveTv(){
+  const n=$('tvName').value.trim();
+  const v=$('tvTime').value.trim().toUpperCase();
+  const r=$('tvRot').value.trim()||'Etiqueta de producción';
+  const a=$('tvAlm').value.trim()||'—';
+  const c=$('tvCatSel').value;
+  if(!n||!v){ toast('Completa nombre y tiempo'); return; }
+  D.t.push({c,n,v,r,a});
+  saveD(); setTvCat(c);
+  closeTvModal(); toast('✓ Guardado');
+}
+
+// ─── INIT ────────────────────────────────────────────
+// Set initial nav state
+$('navM').className='act-m';
+
+initCalc('m');
+initCalc('h');
+initTv();
 </script>
 </body>
 </html>
