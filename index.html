@@ -608,17 +608,23 @@ const DEF = {
 // ─── STATE ───────────────────────────────────────────
 let D = loadD();
 let du = {m:'kg', h:'kg'};
-let tvCat = 'almacen';
+let tvCat = 'todos';
 let tvSort = 'az';
 let recSec = null, recIdx = null, ingCnt = 0;
 
 const TV_CATS = [
-  {id:'almacen',   lbl:'📦 Almacén'},
-  {id:'estacion',  lbl:'🍳 Estación'},
-  {id:'verduras',  lbl:'🥦 Verduras'},
+  {id:'todos',        lbl:'🌐 Todos'},
+  {id:'almacen',      lbl:'📦 Almacén'},
+  {id:'estacion',     lbl:'🍳 Estación'},
+  {id:'verduras',     lbl:'🥦 Verduras'},
   {id:'marinados_tv', lbl:'🥩 Marinados'},
   {id:'congelacion',  lbl:'❄️ Congelación'}
 ];
+
+const CAT_LABEL = {
+  almacen:'📦 Almacén', estacion:'🍳 Estación', verduras:'🥦 Verduras',
+  marinados_tv:'🥩 Marinados porcionados', congelacion:'❄️ Congelación'
+};
 
 function loadD(){
   try{ const s=localStorage.getItem('cw6'); if(s) return JSON.parse(s); }catch(e){}
@@ -885,26 +891,11 @@ function setSort(s){
 
 function renderTv(){
   const q=($('tvSrch').value||'').toLowerCase();
-  let all=D.t.filter(r=>r.c===tvCat);
+  const isAll = tvCat==='todos';
+  let all = isAll ? [...D.t] : D.t.filter(r=>r.c===tvCat);
   if(q) all=all.filter(r=>r.n.toLowerCase().includes(q)||r.a.toLowerCase().includes(q)||r.v.toLowerCase().includes(q));
 
-  // split: fixed time vs según empaque
-  let fixed=all.filter(r=>!r.v.toUpperCase().includes('EMPAQUE'));
-  let semp=all.filter(r=>r.v.toUpperCase().includes('EMPAQUE'));
-
-  // sort fixed
-  if(tvSort==='az')  fixed.sort((a,b)=>a.n.localeCompare(b.n,'es'));
-  if(tvSort==='za')  fixed.sort((a,b)=>b.n.localeCompare(a.n,'es'));
-  if(tvSort==='ta')  fixed.sort((a,b)=>t2min(a.v)-t2min(b.v));
-  if(tvSort==='td')  fixed.sort((a,b)=>t2min(b.v)-t2min(a.v));
-  // según empaque always A-Z
-  semp.sort((a,b)=>a.n.localeCompare(b.n,'es'));
-
-  if(!all.length){
-    $('tvBody').innerHTML='';
-    $('tvEmpty').style.display='';
-    return;
-  }
+  if(!all.length){ $('tvBody').innerHTML=''; $('tvEmpty').style.display=''; return; }
   $('tvEmpty').style.display='none';
 
   function row(r){
@@ -918,11 +909,72 @@ function renderTv(){
     </tr>`;
   }
 
-  let html=fixed.map(row).join('');
-  if(semp.length){
-    html+=`<tr class="sep"><td colspan="5">📦 Según empaque del proveedor</td></tr>`;
-    html+=semp.map(row).join('');
+  function sepRow(lbl){ return `<tr class="sep"><td colspan="5">${lbl}</td></tr>`; }
+
+  // split fixed vs según empaque
+  let fixed = all.filter(r=>!r.v.toUpperCase().includes('EMPAQUE'));
+  let semp  = all.filter(r=>r.v.toUpperCase().includes('EMPAQUE'));
+
+  if(tvSort==='az') fixed.sort((a,b)=>a.n.localeCompare(b.n,'es'));
+  if(tvSort==='za') fixed.sort((a,b)=>b.n.localeCompare(a.n,'es'));
+  if(tvSort==='ta') fixed.sort((a,b)=>t2min(a.v)-t2min(b.v));
+  if(tvSort==='td') fixed.sort((a,b)=>t2min(b.v)-t2min(a.v));
+  semp.sort((a,b)=>a.n.localeCompare(b.n,'es'));
+
+  let html='';
+
+  if(isAll && (tvSort==='ta'||tvSort==='td')){
+    // ── MODO TODOS + ORDEN POR TIEMPO: agrupar por bloques de tiempo ──
+    // bucket by time string (normalized)
+    const buckets = new Map();
+    fixed.forEach(r=>{
+      const k=r.v.toUpperCase();
+      if(!buckets.has(k)) buckets.set(k,[]);
+      buckets.get(k).push(r);
+    });
+    const order = tvSort==='ta'
+      ? [...buckets.keys()].sort((a,b)=>t2min(a)-t2min(b))
+      : [...buckets.keys()].sort((a,b)=>t2min(b)-t2min(a));
+    order.forEach(k=>{
+      const items=buckets.get(k);
+      items.sort((a,b)=>a.n.localeCompare(b.n,'es'));
+      html+=sepRow('⏱ '+k);
+      html+=items.map(row).join('');
+    });
+  } else if(isAll && (tvSort==='az'||tvSort==='za')){
+    // ── MODO TODOS + ORDEN A-Z/Z-A: separadores por categoría ──
+    const catOrder=['almacen','estacion','verduras','marinados_tv','congelacion'];
+    const bycat = {};
+    catOrder.forEach(c=>{ bycat[c]=[]; });
+    fixed.forEach(r=>{ if(bycat[r.c]) bycat[r.c].push(r); });
+    catOrder.forEach(c=>{
+      const items=bycat[c]; if(!items.length) return;
+      html+=sepRow(CAT_LABEL[c]);
+      html+=items.map(row).join('');
+    });
+  } else {
+    // ── MODO POR SECCIÓN (comportamiento original) ──
+    html+=fixed.map(row).join('');
   }
+
+  if(semp.length){
+    html+=sepRow('📦 Según empaque del proveedor');
+    if(isAll){
+      // show sub-separators by category inside según empaque
+      const catOrder=['almacen','estacion','verduras','marinados_tv','congelacion'];
+      const bycat={};
+      catOrder.forEach(c=>{ bycat[c]=[]; });
+      semp.forEach(r=>{ if(bycat[r.c]) bycat[r.c].push(r); });
+      catOrder.forEach(c=>{
+        const items=bycat[c]; if(!items.length) return;
+        html+=`<tr><td colspan="5" style="padding:5px 13px;font-size:11px;color:var(--muted);background:#faf7f2">${CAT_LABEL[c]}</td></tr>`;
+        html+=items.map(row).join('');
+      });
+    } else {
+      html+=semp.map(row).join('');
+    }
+  }
+
   $('tvBody').innerHTML=html;
 }
 
