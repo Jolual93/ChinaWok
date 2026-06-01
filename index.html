@@ -149,6 +149,96 @@ td.amt{font-weight:900;color:var(--green);font-size:16px;}
 .delbtn:hover{background:#ffcfcf;}
 .empty{text-align:center;padding:36px 20px;color:var(--muted);}
 
+/* ── ETIQUETAS ── */
+nav button.act-e{background:#5b2d8e;color:#fff;}
+.lbl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:18px;}
+.lbl-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);}
+.lbl-card .product-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+.lbl-card .product-row select,.lbl-card .product-row input[type=text]{
+  flex:1;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;
+  font-size:14px;font-family:inherit;outline:none;background:#faf7f2;}
+.lbl-card .product-row select:focus,.lbl-card .product-row input:focus{border-color:#5b2d8e;}
+.lbl-card .product-row button{border:none;background:#ffeaea;color:var(--red);border-radius:9px;
+  width:34px;height:34px;font-size:16px;cursor:pointer;flex-shrink:0;}
+.lbl-card .hora-row{display:flex;gap:6px;margin-bottom:10px;}
+.lbl-card .hora-row input{flex:1;padding:8px 10px;border:1.5px solid var(--line);border-radius:9px;
+  font-size:14px;font-family:inherit;outline:none;text-align:center;}
+.lbl-card .hora-row input:focus{border-color:#5b2d8e;}
+.lbl-card .hora-lbl{font-size:10px;color:var(--muted);text-align:center;margin-top:3px;font-weight:700;letter-spacing:.5px;}
+.lbl-card .date-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
+.lbl-card .date-field label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.5px;display:block;margin-bottom:3px;}
+.lbl-card .date-field input{width:100%;padding:7px 10px;border:1.5px solid var(--line);border-radius:9px;
+  font-size:13px;font-family:inherit;outline:none;background:#faf7f2;}
+.lbl-card .date-field input:focus{border-color:#5b2d8e;}
+.lbl-card .caducidad-field{margin-top:8px;}
+.lbl-card .caducidad-field label{font-size:10px;font-weight:800;color:var(--red);letter-spacing:.5px;display:block;margin-bottom:3px;}
+.lbl-card .caducidad-field input{width:100%;padding:7px 10px;border:1.5px solid #f5c0c0;border-radius:9px;
+  font-size:13px;font-family:inherit;outline:none;background:#ffeaea;color:var(--red);font-weight:700;}
+.lbl-card .time-badge-row{font-size:12px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px;}
+
+.auto-hero{background:linear-gradient(135deg,#3d1f63,#5b2d8e);border-radius:var(--r);padding:22px 26px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;color:#fff;box-shadow:var(--shadow);}
+.auto-hero-left{display:flex;gap:16px;align-items:flex-start;flex:1;}
+.auto-icon{font-size:34px;flex-shrink:0;line-height:1;}
+.auto-title{font-size:18px;font-weight:900;margin-bottom:5px;}
+.auto-sub{font-size:13px;opacity:.85;line-height:1.5;max-width:420px;}
+.auto-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end;flex-shrink:0;}
+.cat-filter-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+.cat-chip{border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
+  border-radius:20px;padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;}
+.cat-chip:hover{background:rgba(255,255,255,.2);}
+.cat-chip.on{background:#fff;color:#5b2d8e;border-color:#fff;}
+.btn-auto{background:#fff;color:#5b2d8e;border:none;border-radius:12px;padding:12px 22px;
+  font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;}
+.btn-auto:hover{background:#ede7f6;}
+.lbl-search{flex:1;min-width:160px;max-width:280px;padding:10px 14px;border:1.5px solid var(--line);
+  border-radius:12px;font-size:14px;font-family:inherit;outline:none;background:#fff;transition:border-color .15s;}
+.lbl-search:focus{border-color:#5b2d8e;}
+.lbl-card.hidden{display:none;}
+.add-lbl-btn{width:100%;border:2px dashed var(--line);background:transparent;border-radius:var(--r);
+  padding:18px;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit;
+  transition:all .15s;margin-top:4px;}
+.add-lbl-btn:hover{border-color:#5b2d8e;color:#5b2d8e;background:#f5f0ff;}
+.print-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
+.btn-purple{background:#5b2d8e;color:#fff;border:none;border-radius:12px;padding:12px 20px;
+  font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn-purple:hover{background:#3d1f63;}
+.switch-row{display:flex;gap:6px;background:rgba(255,255,255,.6);border:1.5px solid var(--line);
+  border-radius:10px;padding:3px;}
+.switch-row button{border:none;background:transparent;padding:6px 14px;border-radius:8px;
+  font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);font-family:inherit;}
+.switch-row button.on{background:#5b2d8e;color:#fff;}
+
+/* PRINT PREVIEW */
+@media print{
+  body *{visibility:hidden!important;}
+  #printArea,#printArea *{visibility:visible!important;}
+  #printArea{position:fixed;left:0;top:0;width:100%;background:#fff;}
+  .ngr-label{page-break-inside:avoid;}
+}
+.ngr-label{
+  width:90mm;border:2.5px solid #000;border-radius:5mm;padding:3mm 3.5mm;
+  font-family:'Arial Black',Arial,sans-serif;background:#fff;
+  display:inline-block;margin:3mm;vertical-align:top;
+}
+.ngr-label .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:2mm;}
+.ngr-label .brand{font-size:11pt;font-weight:900;letter-spacing:1px;}
+.ngr-label .resp{font-size:7pt;font-weight:700;}
+.ngr-label .resp span{font-weight:900;}
+.ngr-label .hora-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #000;margin-bottom:1.5mm;}
+.ngr-label .hora-cell{padding:1.5mm 2mm;border-right:1px solid #000;text-align:center;}
+.ngr-label .hora-cell:last-child{border-right:none;}
+.ngr-label .hora-val{font-size:9pt;font-weight:900;min-height:5mm;display:block;}
+.ngr-label .hora-lbl{font-size:6pt;font-weight:700;color:#333;letter-spacing:.5px;}
+.ngr-label .date-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #000;border-top:none;margin-bottom:1.5mm;}
+.ngr-label .date-cell{padding:1.5mm 2mm;border-right:1px solid #000;}
+.ngr-label .date-cell:last-child{border-right:none;}
+.ngr-label .date-val{font-size:8pt;font-weight:900;display:block;min-height:4.5mm;}
+.ngr-label .date-lbl{font-size:5.5pt;font-weight:700;color:#555;letter-spacing:.3px;}
+.ngr-label .prod-row{border:1px solid #000;padding:1.5mm 2mm;margin-top:0;}
+.ngr-label .prod-lbl{font-size:5.5pt;font-weight:700;color:#555;}
+.ngr-label .prod-val{font-size:9pt;font-weight:900;display:block;min-height:5mm;}
+#printArea{display:none;}
+
 /* MODAL */
 .mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;padding:14px;}
 .mbg.open{display:flex;}
@@ -271,6 +361,7 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
       <button id="navM" onclick="goPage('m')">🥩 Marinados</button>
       <button id="navH" onclick="goPage('h')">💧 Hidratados</button>
       <button id="navT" onclick="goPage('t')">⏱ Tiempos</button>
+      <button id="navE" onclick="goPage('e')">🏷 Etiquetas</button>
     </nav>
   </aside>
 
@@ -436,9 +527,48 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
       </div>
     </div>
 
+    <!-- ETIQUETAS -->
+    <div class="page" id="pageE">
+      <div class="topbar">
+        <div class="title-area">
+          <div class="icon-box">🏷</div>
+          <div><h1 style="color:#5b2d8e">ETIQUETAS</h1><div class="sub">Genera rotulaciones NGR con vencimiento automático.</div></div>
+        </div>
+      </div>
+
+      <!-- AUTO GENERATE HERO -->
+      <div class="auto-hero">
+        <div class="auto-hero-left">
+          <div class="auto-icon">⚡</div>
+          <div>
+            <div class="auto-title">Generar todas las etiquetas</div>
+            <div class="auto-sub">Crea automáticamente una etiqueta por cada insumo con tiempo de vida definido (excluye "según empaque"). Fecha y hora calculadas desde ahora.</div>
+          </div>
+        </div>
+        <div class="auto-actions">
+          <div class="cat-filter-row" id="catFilterRow"></div>
+          <button class="btn-auto" onclick="autoGenerate()">⚡ Generar todo ahora</button>
+        </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="print-bar">
+        <button class="btn-purple" onclick="printLabels()">🖨 Imprimir etiquetas</button>
+        <button class="pill" onclick="clearLabels()">🗑 Limpiar todo</button>
+        <input class="lbl-search" id="lblSearch" placeholder="🔍 Buscar etiqueta…" oninput="filterLabels()" autocomplete="off"/>
+        <div style="font-size:13px;color:var(--muted)" id="lblCount">0 etiquetas</div>
+      </div>
+
+      <div class="lbl-grid" id="lblGrid"></div>
+      <button class="add-lbl-btn" onclick="addLblCard()">＋ Agregar producto manualmente</button>
+    </div>
+
   </main>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- PRINT AREA -->
+<div id="printArea"></div>
 
 <script>
 // ─── DEFAULT DATA ────────────────────────────────────
@@ -686,7 +816,7 @@ function toast(msg){
 
 // ─── NAVIGATION ──────────────────────────────────────
 function goPage(p){
-  ['m','h','t'].forEach(x=>{
+  ['m','h','t','e'].forEach(x=>{
     $('page'+x.toUpperCase()).classList.toggle('show',x===p);
     const b=$('nav'+x.toUpperCase());
     b.className=x===p?'act-'+p:'';
@@ -1008,13 +1138,299 @@ function saveTv(){
   closeTvModal(); toast('✓ Guardado');
 }
 
-// ─── INIT ────────────────────────────────────────────
-// Set initial nav state
-$('navM').className='act-m';
 
+// ─── ETIQUETAS ───────────────────────────────────────
+let lblCards = [];
+let lblCnt = 0;
+
+// Categories available for filter
+const AUTO_CATS = [
+  {id:'almacen',      lbl:'📦 Almacén'},
+  {id:'estacion',     lbl:'🍳 Estación'},
+  {id:'verduras',     lbl:'🥦 Verduras'},
+  {id:'marinados_tv', lbl:'🥩 Marinados'},
+  {id:'congelacion',  lbl:'❄️ Congelación'}
+];
+let activeCats = new Set(['almacen','estacion','verduras','marinados_tv','congelacion']);
+
+function initLabels(){
+  // build category filter chips
+  const row = $('catFilterRow');
+  if(row){
+    AUTO_CATS.forEach(cat=>{
+      const btn=document.createElement('button');
+      btn.className='cat-chip on';
+      btn.textContent=cat.lbl;
+      btn.dataset.id=cat.id;
+      btn.onclick=()=>{
+        if(activeCats.has(cat.id)){
+          if(activeCats.size===1) return; // keep at least one
+          activeCats.delete(cat.id);
+          btn.classList.remove('on');
+        } else {
+          activeCats.add(cat.id);
+          btn.classList.add('on');
+        }
+      };
+      row.appendChild(btn);
+    });
+  }
+  addLblCard();
+}
+
+function autoGenerate(){
+  // Get all TV products that have a defined time (not "según empaque")
+  // filtered by active categories, deduplicated by name
+  const seen = new Set();
+  const products = D.t.filter(r=>{
+    if(!activeCats.has(r.c)) return false;
+    if(r.v.toUpperCase().includes('EMPAQUE')) return false;
+    if(seen.has(r.n)) return false;
+    seen.add(r.n);
+    return true;
+  });
+
+  if(!products.length){ toast('No hay productos con tiempo definido en las categorías seleccionadas'); return; }
+
+  // Clear existing cards
+  $('lblGrid').innerHTML='';
+  lblCards=[];
+
+  // Generate one card per product
+  products.forEach(p=>{
+    addLblCard(p.n);
+  });
+
+  // clear search so all new cards are visible
+  const srch=$('lblSearch'); if(srch) srch.value='';
+  filterLabels();
+  toast('✓ '+products.length+' etiquetas generadas');
+  // Scroll to grid
+  $('lblGrid').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function allTvProducts(){
+  // returns sorted list of all TV product names for datalist
+  return [...new Set(D.t.map(r=>r.n))].sort((a,b)=>a.localeCompare(b,'es'));
+}
+
+function getTvEntry(name){
+  return D.t.find(r=>r.n.toLowerCase()===name.toLowerCase());
+}
+
+function parseTimeToMs(v){
+  const u=v.toUpperCase();
+  if(u.includes('EMPAQUE')) return null;
+  const m=u.match(/(\d+\.?\d*)\s*(HORA|DÍA|DIA|SEMANA|MES|MIN)/);
+  if(!m) return null;
+  const n=parseFloat(m[1]),unit=m[2];
+  if(unit.startsWith('HORA')) return n*3600*1000;
+  if(unit.startsWith('DÍA')||unit.startsWith('DIA')) return n*86400*1000;
+  if(unit.startsWith('SEMANA')) return n*7*86400*1000;
+  if(unit.startsWith('MES')) return n*30*86400*1000;
+  return null;
+}
+
+function fmtDate(d){
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const yy=String(d.getFullYear()).slice(2);
+  return dd+'/'+mm+'/'+yy;
+}
+function fmtTime(d){
+  return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+}
+
+function addLblCard(prefill){
+  const id = 'lbl'+(lblCnt++);
+  const now = new Date();
+
+  // build product options from TV list
+  const opts = allTvProducts().map(n=>`<option value="${n}">`).join('');
+
+  const card = document.createElement('div');
+  card.className='lbl-card';
+  card.id=id;
+  card.innerHTML=`
+    <div class="product-row">
+      <input type="text" id="${id}_prod" list="${id}_dl" placeholder="Producto (elige o escribe)"
+        oninput="onProdChange('${id}')" autocomplete="off"/>
+      <datalist id="${id}_dl">${opts}</datalist>
+      <button onclick="removeLblCard('${id}')" title="Quitar">✕</button>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.5px;margin-bottom:4px">HORA DE PREPARACIÓN</div>
+    <div class="hora-row">
+      <div>
+        <input type="time" id="${id}_h2" value="${fmtTime(now)}"/>
+        <div class="hora-lbl">HORA</div>
+      </div>
+    </div>
+    <div class="date-row" style="margin-top:10px">
+      <div class="date-field">
+        <label>FECHA DE USO</label>
+        <input type="date" id="${id}_uso" value="${now.toISOString().slice(0,10)}" oninput="updateCad('${id}')"/>
+      </div>
+      <div class="date-field">
+        <label>FECHA DE DESCONGELACIÓN</label>
+        <input type="date" id="${id}_desc" value="${now.toISOString().slice(0,10)}"/>
+      </div>
+    </div>
+    <div class="caducidad-field">
+      <label>📅 FECHA DE CADUCIDAD</label>
+      <input type="datetime-local" id="${id}_cad"/>
+    </div>
+    <div class="time-badge-row" id="${id}_info">
+      <span style="color:var(--muted)">Selecciona un producto para calcular vencimiento automáticamente.</span>
+    </div>`;
+
+  $('lblGrid').appendChild(card);
+  lblCards.push(id);
+  updateLblCount();
+
+  if(prefill){
+    $(id+'_prod').value=prefill;
+    onProdChange(id);
+  }
+}
+
+function onProdChange(id){
+  const name=$(id+'_prod').value.trim();
+  const entry=getTvEntry(name);
+  const infoEl=$(id+'_info');
+  const cadEl=$(id+'_cad');
+
+  if(!entry){ infoEl.innerHTML=`<span style="color:var(--muted)">Producto no encontrado en lista — vencimiento manual.</span>`; return; }
+
+  const ms=parseTimeToMs(entry.v);
+  if(!ms){
+    infoEl.innerHTML=`<span style="color:var(--muted)">⚠ Según empaque — ingresa vencimiento manualmente.</span>`;
+    return;
+  }
+
+  // calculate caducidad from current moment + time
+  const now=new Date();
+  const cad=new Date(now.getTime()+ms);
+  // set datetime-local value
+  const cadStr=cad.getFullYear()+'-'+String(cad.getMonth()+1).padStart(2,'0')+'-'+
+    String(cad.getDate()).padStart(2,'0')+'T'+String(cad.getHours()).padStart(2,'0')+':'+
+    String(cad.getMinutes()).padStart(2,'0');
+  cadEl.value=cadStr;
+
+  infoEl.innerHTML=`<span class="badge ${getBadgeClass(entry.v)}">${entry.v}</span>
+    <span style="color:var(--muted)">→ vence ${fmtDate(cad)} ${fmtTime(cad)}</span>`;
+}
+
+function updateCad(id){
+  // re-trigger product change to recalc if product set
+  onProdChange(id);
+}
+
+function getBadgeClass(v){
+  const u=v.toUpperCase();
+  if(u.includes('EMPAQUE')) return 'bemp';
+  if(u.includes('HORA')){ const h=parseFloat(u); return h<=4?'bd1':'bh'; }
+  if(u.includes('DÍA')||u.includes('DIA')){ const d=parseFloat(u);
+    if(d<=1) return 'bd1'; if(d<=2) return 'bd2'; if(d<=4) return 'bd4'; if(d<=5) return 'bd5'; return 'bd7'; }
+  return 'bemp';
+}
+
+function removeLblCard(id){
+  const el=$(id); if(el) el.remove();
+  lblCards=lblCards.filter(x=>x!==id);
+  updateLblCount();
+}
+
+function clearLabels(){
+  $('lblGrid').innerHTML='';
+  lblCards=[];
+  const srch=$('lblSearch'); if(srch) srch.value='';
+  updateLblCount();
+  addLblCard();
+}
+
+function updateLblCount(){
+  const vis = lblCards.filter(id=>{
+    const el=$(id); return el && !el.classList.contains('hidden');
+  }).length;
+  const total = lblCards.length;
+  $('lblCount').textContent = total===vis
+    ? total+' etiqueta'+(total!==1?'s':'')
+    : vis+' de '+total+' etiqueta'+(total!==1?'s':'');
+}
+
+function filterLabels(){
+  const q=($('lblSearch').value||'').toLowerCase().trim();
+  lblCards.forEach(id=>{
+    const el=$(id); if(!el) return;
+    const prod=$(id+'_prod');
+    const name=(prod?prod.value:'').toLowerCase();
+    el.classList.toggle('hidden', q!=='' && !name.includes(q));
+  });
+  updateLblCount();
+}
+
+function printLabels(){
+  const area=$('printArea');
+  area.innerHTML='';
+  let any=false;
+
+  lblCards.forEach(id=>{
+    const prod=$(id+'_prod').value.trim();
+    if(!prod) return;
+    any=true;
+
+    const h2=$(id+'_h2').value||'';
+    const usoV=$(id+'_uso').value;
+    const descV=$(id+'_desc').value;
+    const cadV=$(id+'_cad').value;
+
+    const usoDate = usoV?fmtDate(new Date(usoV+'T12:00')):'';
+    const descDate = descV?fmtDate(new Date(descV+'T12:00')):'';
+
+    let cadDate='', cadHora='';
+    if(cadV){
+      const cd=new Date(cadV);
+      cadDate=fmtDate(cd);
+      cadHora=fmtTime(cd);
+    }
+
+    // Build NGR-style label
+    const lbl=document.createElement('div');
+    lbl.className='ngr-label';
+    lbl.innerHTML=`
+      <div class="top-row">
+        <div class="brand">NGR ✦</div>
+        <div class="resp">RESPONSABLE: <span>Jonatan</span></div>
+      </div>
+      <div class="hora-grid">
+        <div class="hora-cell"><span class="hora-val"></span><span class="hora-lbl">HORA</span></div>
+        <div class="hora-cell"><span class="hora-val">${h2}</span><span class="hora-lbl">HORA</span></div>
+        <div class="hora-cell"><span class="hora-val">${cadHora}</span><span class="hora-lbl">HORA</span></div>
+      </div>
+      <div class="date-grid">
+        <div class="date-cell"><span class="date-val">${descDate}</span><span class="date-lbl">FECHA DE DESCONGELACIÓN:</span></div>
+        <div class="date-cell"><span class="date-val">${usoDate}</span><span class="date-lbl">FECHA DE USO:</span></div>
+        <div class="date-cell"><span class="date-val">${cadDate}</span><span class="date-lbl">FECHA DE CADUCIDAD:</span></div>
+      </div>
+      <div class="prod-row">
+        <span class="prod-lbl">PRODUCTO:</span>
+        <span class="prod-val">${prod}</span>
+      </div>`;
+    area.appendChild(lbl);
+  });
+
+  if(!any){ toast('Agrega al menos un producto'); return; }
+  area.style.display='block';
+  window.print();
+  setTimeout(()=>{ area.style.display='none'; },500);
+}
+
+// ─── INIT ────────────────────────────────────────────
+$('navM').className='act-m';
 initCalc('m');
 initCalc('h');
 initTv();
+initLabels();
 </script>
 </body>
 </html>
