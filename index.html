@@ -151,31 +151,8 @@ td.amt{font-weight:900;color:var(--green);font-size:16px;}
 
 /* ── ETIQUETAS ── */
 nav button.act-e{background:#5b2d8e;color:#fff;}
-.lbl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:18px;}
-.lbl-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);}
-.lbl-card .product-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
-.lbl-card .product-row select,.lbl-card .product-row input[type=text]{
-  flex:1;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;
-  font-size:14px;font-family:inherit;outline:none;background:#faf7f2;}
-.lbl-card .product-row select:focus,.lbl-card .product-row input:focus{border-color:#5b2d8e;}
-.lbl-card .product-row button{border:none;background:#ffeaea;color:var(--red);border-radius:9px;
-  width:34px;height:34px;font-size:16px;cursor:pointer;flex-shrink:0;}
-.lbl-card .hora-row{display:flex;gap:6px;margin-bottom:10px;}
-.lbl-card .hora-row input{flex:1;padding:8px 10px;border:1.5px solid var(--line);border-radius:9px;
-  font-size:14px;font-family:inherit;outline:none;text-align:center;}
-.lbl-card .hora-row input:focus{border-color:#5b2d8e;}
-.lbl-card .hora-lbl{font-size:10px;color:var(--muted);text-align:center;margin-top:3px;font-weight:700;letter-spacing:.5px;}
-.lbl-card .date-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
-.lbl-card .date-field label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.5px;display:block;margin-bottom:3px;}
-.lbl-card .date-field input{width:100%;padding:7px 10px;border:1.5px solid var(--line);border-radius:9px;
-  font-size:13px;font-family:inherit;outline:none;background:#faf7f2;}
-.lbl-card .date-field input:focus{border-color:#5b2d8e;}
-.lbl-card .caducidad-field{margin-top:8px;}
-.lbl-card .caducidad-field label{font-size:10px;font-weight:800;color:var(--red);letter-spacing:.5px;display:block;margin-bottom:3px;}
-.lbl-card .caducidad-field input{width:100%;padding:7px 10px;border:1.5px solid #f5c0c0;border-radius:9px;
-  font-size:13px;font-family:inherit;outline:none;background:#ffeaea;color:var(--red);font-weight:700;}
-.lbl-card .time-badge-row{font-size:12px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px;}
 
+/* auto-hero */
 .auto-hero{background:linear-gradient(135deg,#3d1f63,#5b2d8e);border-radius:var(--r);padding:22px 26px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;color:#fff;box-shadow:var(--shadow);}
 .auto-hero-left{display:flex;gap:16px;align-items:flex-start;flex:1;}
 .auto-icon{font-size:34px;flex-shrink:0;line-height:1;}
@@ -183,60 +160,153 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
 .auto-sub{font-size:13px;opacity:.85;line-height:1.5;max-width:420px;}
 .auto-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end;flex-shrink:0;}
 .cat-filter-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
-.cat-chip{border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
-  border-radius:20px;padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;}
+.cat-chip{border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-radius:20px;padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;}
 .cat-chip:hover{background:rgba(255,255,255,.2);}
 .cat-chip.on{background:#fff;color:#5b2d8e;border-color:#fff;}
-.btn-auto{background:#fff;color:#5b2d8e;border:none;border-radius:12px;padding:12px 22px;
-  font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;}
+.btn-auto{background:#fff;color:#5b2d8e;border:none;border-radius:12px;padding:12px 22px;font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;}
 .btn-auto:hover{background:#ede7f6;}
-.lbl-search{flex:1;min-width:160px;max-width:280px;padding:10px 14px;border:1.5px solid var(--line);
-  border-radius:12px;font-size:14px;font-family:inherit;outline:none;background:#fff;transition:border-color .15s;}
-.lbl-search:focus{border-color:#5b2d8e;}
-.lbl-card.hidden{display:none;}
-.add-lbl-btn{width:100%;border:2px dashed var(--line);background:transparent;border-radius:var(--r);
-  padding:18px;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit;
-  transition:all .15s;margin-top:4px;}
-.add-lbl-btn:hover{border-color:#5b2d8e;color:#5b2d8e;background:#f5f0ff;}
-.print-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
-.btn-purple{background:#5b2d8e;color:#fff;border:none;border-radius:12px;padding:12px 20px;
-  font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:background .15s;}
-.btn-purple:hover{background:#3d1f63;}
-.switch-row{display:flex;gap:6px;background:rgba(255,255,255,.6);border:1.5px solid var(--line);
-  border-radius:10px;padding:3px;}
-.switch-row button{border:none;background:transparent;padding:6px 14px;border-radius:8px;
-  font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);font-family:inherit;}
-.switch-row button.on{background:#5b2d8e;color:#fff;}
 
-/* PRINT PREVIEW */
+/* controls bar */
+.print-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
+.btn-purple{background:#5b2d8e;color:#fff;border:none;border-radius:12px;padding:12px 20px;font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn-purple:hover{background:#3d1f63;}
+.btn-preview{background:#fff;border:1.5px solid #5b2d8e;color:#5b2d8e;border-radius:12px;padding:11px 18px;font-weight:900;font-size:14px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.btn-preview:hover{background:#f5f0ff;}
+.lbl-search{flex:1;min-width:160px;max-width:280px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:14px;font-family:inherit;outline:none;background:#fff;transition:border-color .15s;}
+.lbl-search:focus{border-color:#5b2d8e;}
+
+/* card grid */
+.lbl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:4px;}
+.lbl-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .15s;}
+.lbl-card:hover{box-shadow:0 8px 30px rgba(91,45,142,.15);}
+.lbl-card.hidden{display:none;}
+.lbl-card.selected{border-color:#5b2d8e;box-shadow:0 0 0 3px rgba(91,45,142,.2);}
+
+/* card header (NGR preview strip) */
+.lbl-card-header{background:#111;color:#fff;padding:9px 13px;display:flex;justify-content:space-between;align-items:center;}
+.lbl-card-brand{font-weight:900;font-size:13px;letter-spacing:1.5px;display:flex;align-items:center;gap:6px;}
+.lbl-card-brand .sym{color:#e53935;font-size:16px;}
+.lbl-card-resp{font-size:11px;opacity:.75;}
+.lbl-card-resp strong{color:#fff;opacity:1;}
+
+/* the NGR preview inside card */
+.lbl-preview{border:2px solid #222;border-radius:6px;margin:12px;font-family:'Arial Black',Arial,sans-serif;overflow:hidden;}
+.lbl-p-top{background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:5px 8px;}
+.lbl-p-brand{font-size:11px;font-weight:900;letter-spacing:1px;display:flex;align-items:center;gap:4px;}
+.lbl-p-brand span{color:#e53935;}
+.lbl-p-resp{font-size:9px;font-weight:700;}
+.lbl-p-resp b{color:#fff;}
+.lbl-p-horas{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1.5px solid #222;}
+.lbl-p-hcell{padding:4px 5px;border-right:1.5px solid #222;text-align:center;}
+.lbl-p-hcell:last-child{border-right:none;}
+.lbl-p-hval{font-size:11px;font-weight:900;min-height:16px;display:block;color:#111;}
+.lbl-p-hlbl{font-size:8px;font-weight:700;color:#555;letter-spacing:.3px;}
+.lbl-p-dates{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1.5px solid #222;}
+.lbl-p-dcell{padding:4px 5px;border-right:1.5px solid #222;}
+.lbl-p-dcell:last-child{border-right:none;}
+.lbl-p-dval{font-size:10px;font-weight:900;display:block;min-height:13px;color:#111;}
+.lbl-p-dlbl{font-size:7px;font-weight:700;color:#777;letter-spacing:.2px;line-height:1.2;}
+.lbl-p-prod{padding:5px 8px;background:#f8f8f8;}
+.lbl-p-plbl{font-size:7px;font-weight:700;color:#777;}
+.lbl-p-pval{font-size:12px;font-weight:900;color:#111;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* card body (editable fields) */
+.lbl-body{padding:12px 13px 13px;}
+.lbl-field-group{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;}
+.lbl-field{display:flex;flex-direction:column;gap:3px;}
+.lbl-field label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.4px;text-transform:uppercase;}
+.lbl-field input{padding:7px 9px;border:1.5px solid var(--line);border-radius:9px;font-size:13px;font-family:inherit;outline:none;background:#faf7f2;transition:border-color .15s;}
+.lbl-field input:focus{border-color:#5b2d8e;}
+.lbl-field.full{grid-column:1/-1;}
+.lbl-field.cad input{border-color:#f5c0c0;background:#ffeaea;color:var(--red);font-weight:700;}
+.lbl-field.cad label{color:var(--red);}
+.lbl-field.cad input:focus{border-color:var(--red);}
+.lbl-info{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px;margin-top:2px;}
+.lbl-card-footer{display:flex;justify-content:space-between;align-items:center;padding:8px 13px 10px;border-top:1px solid var(--line);}
+.lbl-sel-btn{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--muted);}
+.lbl-sel-btn:hover{border-color:#5b2d8e;color:#5b2d8e;}
+.lbl-card.selected .lbl-sel-btn{background:#5b2d8e;border-color:#5b2d8e;color:#fff;}
+.lbl-del-btn{border:none;background:transparent;color:var(--muted);font-size:16px;cursor:pointer;padding:4px 6px;border-radius:7px;transition:all .15s;}
+.lbl-del-btn:hover{background:#ffeaea;color:var(--red);}
+
+.add-lbl-btn{width:100%;border:2px dashed var(--line);background:transparent;border-radius:var(--r);padding:16px;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .15s;margin-top:12px;}
+.add-lbl-btn:hover{border-color:#5b2d8e;color:#5b2d8e;background:#f5f0ff;}
+.sel-bar{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.sel-all-btn{border:none;background:transparent;color:#5b2d8e;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;padding:0;}
+
+/* PREVIEW MODAL */
+.prev-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;}
+.prev-modal-bg.open{display:flex;}
+.prev-modal{background:#fff;border-radius:var(--r);padding:28px;max-width:900px;width:100%;margin:auto;}
+.prev-modal h2{font-size:20px;margin-bottom:6px;}
+.prev-modal .sub{color:var(--muted);font-size:13px;margin-bottom:20px;}
+.prev-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.prev-macts{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* PRINT NGR LABEL */
 @media print{
   body *{visibility:hidden!important;}
   #printArea,#printArea *{visibility:visible!important;}
-  #printArea{position:fixed;left:0;top:0;width:100%;background:#fff;}
+  #printArea{position:fixed;left:0;top:0;width:100%;background:#fff;padding:5mm;}
   .ngr-label{page-break-inside:avoid;}
 }
+/* NGR LABEL — layout fiel a la etiqueta real */
 .ngr-label{
-  width:90mm;border:2.5px solid #000;border-radius:5mm;padding:3mm 3.5mm;
-  font-family:'Arial Black',Arial,sans-serif;background:#fff;
-  display:inline-block;margin:3mm;vertical-align:top;
+  width:100mm; border:3px solid #000; border-radius:5mm;
+  font-family:'Arial Black',Arial,sans-serif; background:#fff;
+  display:inline-block; margin:2.5mm; vertical-align:top; overflow:hidden;
 }
-.ngr-label .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:2mm;}
-.ngr-label .brand{font-size:11pt;font-weight:900;letter-spacing:1px;}
-.ngr-label .resp{font-size:7pt;font-weight:700;}
-.ngr-label .resp span{font-weight:900;}
-.ngr-label .hora-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #000;margin-bottom:1.5mm;}
-.ngr-label .hora-cell{padding:1.5mm 2mm;border-right:1px solid #000;text-align:center;}
-.ngr-label .hora-cell:last-child{border-right:none;}
-.ngr-label .hora-val{font-size:9pt;font-weight:900;min-height:5mm;display:block;}
-.ngr-label .hora-lbl{font-size:6pt;font-weight:700;color:#333;letter-spacing:.5px;}
-.ngr-label .date-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #000;border-top:none;margin-bottom:1.5mm;}
-.ngr-label .date-cell{padding:1.5mm 2mm;border-right:1px solid #000;}
-.ngr-label .date-cell:last-child{border-right:none;}
-.ngr-label .date-val{font-size:8pt;font-weight:900;display:block;min-height:4.5mm;}
-.ngr-label .date-lbl{font-size:5.5pt;font-weight:700;color:#555;letter-spacing:.3px;}
-.ngr-label .prod-row{border:1px solid #000;padding:1.5mm 2mm;margin-top:0;}
-.ngr-label .prod-lbl{font-size:5.5pt;font-weight:700;color:#555;}
-.ngr-label .prod-val{font-size:9pt;font-weight:900;display:block;min-height:5mm;}
+/* ROW 1: PRODUCTO */
+.ngr-prod-row{
+  display:flex; align-items:center; gap:2mm;
+  padding:2.5mm 3mm; border-bottom:2px solid #000;
+}
+.ngr-prod-lbl{font-size:11pt;font-weight:900;text-transform:uppercase;white-space:nowrap;letter-spacing:.5px;}
+.ngr-prod-val{
+  flex:1; background:#e8e8e8; border-radius:2mm;
+  padding:1.5mm 2.5mm; font-size:10pt; font-weight:700;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+/* ROW 2: FECHAS */
+.ngr-dates-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid #000;}
+.ngr-dcell{padding:2mm 2.5mm;border-right:2px solid #000;}
+.ngr-dcell:last-child{border-right:none;}
+.ngr-dlbl{font-size:6pt;font-weight:900;text-transform:uppercase;letter-spacing:.3px;margin-bottom:1.5mm;display:block;}
+.ngr-dval{
+  background:#e8e8e8; border-radius:2mm;
+  padding:1.5mm 2mm; font-size:9.5pt; font-weight:700;
+  display:block; text-align:center; min-height:6mm; line-height:1.3;
+}
+/* ROW 3: HORAS */
+.ngr-horas-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid #000;}
+.ngr-hcell{padding:2mm 2.5mm;border-right:2px solid #000;}
+.ngr-hcell:last-child{border-right:none;}
+.ngr-hlbl{font-size:6pt;font-weight:900;text-transform:uppercase;letter-spacing:.3px;margin-bottom:1.5mm;display:block;}
+.ngr-hval{
+  background:#e8e8e8; border-radius:2mm;
+  padding:1.5mm 2mm; font-size:9.5pt; font-weight:700;
+  display:block; text-align:center; min-height:6mm; line-height:1.3;
+}
+/* ROW 4: RESPONSABLE + NGR */
+.ngr-bottom{display:flex;align-items:center;gap:2mm;padding:2.5mm 3mm;}
+.ngr-resp-lbl{font-size:10pt;font-weight:900;text-transform:uppercase;white-space:nowrap;letter-spacing:.5px;}
+.ngr-resp-val{
+  flex:1; background:#e8e8e8; border-radius:2mm;
+  padding:1.5mm 2.5mm; font-size:10pt; font-weight:700;
+}
+.ngr-logo{font-size:12pt;font-weight:900;letter-spacing:1px;white-space:nowrap;display:flex;align-items:center;gap:1mm;}
+.ngr-logo .sym{font-size:16pt;}
+
+/* mini version for preview modal */
+.ngr-label.mini{width:80mm;font-size:85%;}
+.ngr-label.mini .ngr-prod-lbl{font-size:9pt;}
+.ngr-label.mini .ngr-prod-val{font-size:8.5pt;}
+.ngr-label.mini .ngr-dlbl,.ngr-label.mini .ngr-hlbl{font-size:5pt;}
+.ngr-label.mini .ngr-dval,.ngr-label.mini .ngr-hval{font-size:8pt;padding:1mm 1.5mm;min-height:5mm;}
+.ngr-label.mini .ngr-resp-lbl{font-size:8.5pt;}
+.ngr-label.mini .ngr-resp-val{font-size:8.5pt;}
+.ngr-label.mini .ngr-logo{font-size:10pt;}
+
 #printArea{display:none;}
 
 /* MODAL */
@@ -527,6 +597,19 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
       </div>
     </div>
 
+    <!-- PREVIEW MODAL -->
+    <div class="prev-modal-bg" id="prevModal" onclick="closePrevModal(event)">
+      <div class="prev-modal">
+        <h2>Vista previa de impresión</h2>
+        <div class="sub" id="prevSubtitle">Así se verán tus etiquetas al imprimir.</div>
+        <div class="prev-grid" id="prevGrid"></div>
+        <div class="prev-macts">
+          <button class="btn-purple" onclick="printFromPreview()">🖨 Imprimir ahora</button>
+          <button class="pill" onclick="closePrevModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
     <!-- ETIQUETAS -->
     <div class="page" id="pageE">
       <div class="topbar">
@@ -553,10 +636,14 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
 
       <!-- CONTROLS -->
       <div class="print-bar">
-        <button class="btn-purple" onclick="printLabels()">🖨 Imprimir etiquetas</button>
-        <button class="pill" onclick="clearLabels()">🗑 Limpiar todo</button>
+        <button class="btn-purple" onclick="printLabels()">🖨 Imprimir seleccionadas</button>
+        <button class="btn-preview" onclick="openPreview()">👁 Vista previa</button>
+        <button class="pill" onclick="clearLabels()">🗑 Limpiar</button>
         <input class="lbl-search" id="lblSearch" placeholder="🔍 Buscar etiqueta…" oninput="filterLabels()" autocomplete="off"/>
-        <div style="font-size:13px;color:var(--muted)" id="lblCount">0 etiquetas</div>
+        <div class="sel-bar">
+          <span id="lblCount">0 etiquetas</span>
+          <button class="sel-all-btn" onclick="toggleSelectAll()" id="selAllBtn">Seleccionar todo</button>
+        </div>
       </div>
 
       <div class="lbl-grid" id="lblGrid"></div>
@@ -1142,6 +1229,7 @@ function saveTv(){
 // ─── ETIQUETAS ───────────────────────────────────────
 let lblCards = [];
 let lblCnt = 0;
+let selectedIds = new Set();
 
 // Categories available for filter
 const AUTO_CATS = [
@@ -1154,23 +1242,14 @@ const AUTO_CATS = [
 let activeCats = new Set(['almacen','estacion','verduras','marinados_tv','congelacion']);
 
 function initLabels(){
-  // build category filter chips
-  const row = $('catFilterRow');
+  const row=$('catFilterRow');
   if(row){
     AUTO_CATS.forEach(cat=>{
       const btn=document.createElement('button');
-      btn.className='cat-chip on';
-      btn.textContent=cat.lbl;
-      btn.dataset.id=cat.id;
+      btn.className='cat-chip on'; btn.textContent=cat.lbl; btn.dataset.id=cat.id;
       btn.onclick=()=>{
-        if(activeCats.has(cat.id)){
-          if(activeCats.size===1) return; // keep at least one
-          activeCats.delete(cat.id);
-          btn.classList.remove('on');
-        } else {
-          activeCats.add(cat.id);
-          btn.classList.add('on');
-        }
+        if(activeCats.has(cat.id)){ if(activeCats.size===1) return; activeCats.delete(cat.id); btn.classList.remove('on'); }
+        else { activeCats.add(cat.id); btn.classList.add('on'); }
       };
       row.appendChild(btn);
     });
@@ -1179,45 +1258,30 @@ function initLabels(){
 }
 
 function autoGenerate(){
-  // Get all TV products that have a defined time (not "según empaque")
-  // filtered by active categories, deduplicated by name
-  const seen = new Set();
-  const products = D.t.filter(r=>{
+  const seen=new Set();
+  const products=D.t.filter(r=>{
     if(!activeCats.has(r.c)) return false;
     if(r.v.toUpperCase().includes('EMPAQUE')) return false;
     if(seen.has(r.n)) return false;
-    seen.add(r.n);
-    return true;
+    seen.add(r.n); return true;
   });
-
-  if(!products.length){ toast('No hay productos con tiempo definido en las categorías seleccionadas'); return; }
-
-  // Clear existing cards
-  $('lblGrid').innerHTML='';
-  lblCards=[];
-
-  // Generate one card per product
-  products.forEach(p=>{
-    addLblCard(p.n);
-  });
-
-  // clear search so all new cards are visible
+  if(!products.length){ toast('No hay productos con tiempo definido'); return; }
+  $('lblGrid').innerHTML=''; lblCards=[]; selectedIds=new Set();
+  products.forEach(p=>addLblCard(p.n));
+  // auto-select all
+  lblCards.forEach(id=>{ selectedIds.add(id); const el=$(id); if(el) el.classList.add('selected'); });
   const srch=$('lblSearch'); if(srch) srch.value='';
   filterLabels();
   toast('✓ '+products.length+' etiquetas generadas');
-  // Scroll to grid
   $('lblGrid').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function allTvProducts(){
-  // returns sorted list of all TV product names for datalist
   return [...new Set(D.t.map(r=>r.n))].sort((a,b)=>a.localeCompare(b,'es'));
 }
-
 function getTvEntry(name){
   return D.t.find(r=>r.n.toLowerCase()===name.toLowerCase());
 }
-
 function parseTimeToMs(v){
   const u=v.toUpperCase();
   if(u.includes('EMPAQUE')) return null;
@@ -1230,101 +1294,12 @@ function parseTimeToMs(v){
   if(unit.startsWith('MES')) return n*30*86400*1000;
   return null;
 }
-
 function fmtDate(d){
-  const dd=String(d.getDate()).padStart(2,'0');
-  const mm=String(d.getMonth()+1).padStart(2,'0');
-  const yy=String(d.getFullYear()).slice(2);
-  return dd+'/'+mm+'/'+yy;
+  return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getFullYear()).slice(2);
 }
 function fmtTime(d){
   return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
 }
-
-function addLblCard(prefill){
-  const id = 'lbl'+(lblCnt++);
-  const now = new Date();
-
-  // build product options from TV list
-  const opts = allTvProducts().map(n=>`<option value="${n}">`).join('');
-
-  const card = document.createElement('div');
-  card.className='lbl-card';
-  card.id=id;
-  card.innerHTML=`
-    <div class="product-row">
-      <input type="text" id="${id}_prod" list="${id}_dl" placeholder="Producto (elige o escribe)"
-        oninput="onProdChange('${id}')" autocomplete="off"/>
-      <datalist id="${id}_dl">${opts}</datalist>
-      <button onclick="removeLblCard('${id}')" title="Quitar">✕</button>
-    </div>
-    <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.5px;margin-bottom:4px">HORA DE PREPARACIÓN</div>
-    <div class="hora-row">
-      <div>
-        <input type="time" id="${id}_h2" value="${fmtTime(now)}"/>
-        <div class="hora-lbl">HORA</div>
-      </div>
-    </div>
-    <div class="date-row" style="margin-top:10px">
-      <div class="date-field">
-        <label>FECHA DE USO</label>
-        <input type="date" id="${id}_uso" value="${now.toISOString().slice(0,10)}" oninput="updateCad('${id}')"/>
-      </div>
-      <div class="date-field">
-        <label>FECHA DE DESCONGELACIÓN</label>
-        <input type="date" id="${id}_desc" value="${now.toISOString().slice(0,10)}"/>
-      </div>
-    </div>
-    <div class="caducidad-field">
-      <label>📅 FECHA DE CADUCIDAD</label>
-      <input type="datetime-local" id="${id}_cad"/>
-    </div>
-    <div class="time-badge-row" id="${id}_info">
-      <span style="color:var(--muted)">Selecciona un producto para calcular vencimiento automáticamente.</span>
-    </div>`;
-
-  $('lblGrid').appendChild(card);
-  lblCards.push(id);
-  updateLblCount();
-
-  if(prefill){
-    $(id+'_prod').value=prefill;
-    onProdChange(id);
-  }
-}
-
-function onProdChange(id){
-  const name=$(id+'_prod').value.trim();
-  const entry=getTvEntry(name);
-  const infoEl=$(id+'_info');
-  const cadEl=$(id+'_cad');
-
-  if(!entry){ infoEl.innerHTML=`<span style="color:var(--muted)">Producto no encontrado en lista — vencimiento manual.</span>`; return; }
-
-  const ms=parseTimeToMs(entry.v);
-  if(!ms){
-    infoEl.innerHTML=`<span style="color:var(--muted)">⚠ Según empaque — ingresa vencimiento manualmente.</span>`;
-    return;
-  }
-
-  // calculate caducidad from current moment + time
-  const now=new Date();
-  const cad=new Date(now.getTime()+ms);
-  // set datetime-local value
-  const cadStr=cad.getFullYear()+'-'+String(cad.getMonth()+1).padStart(2,'0')+'-'+
-    String(cad.getDate()).padStart(2,'0')+'T'+String(cad.getHours()).padStart(2,'0')+':'+
-    String(cad.getMinutes()).padStart(2,'0');
-  cadEl.value=cadStr;
-
-  infoEl.innerHTML=`<span class="badge ${getBadgeClass(entry.v)}">${entry.v}</span>
-    <span style="color:var(--muted)">→ vence ${fmtDate(cad)} ${fmtTime(cad)}</span>`;
-}
-
-function updateCad(id){
-  // re-trigger product change to recalc if product set
-  onProdChange(id);
-}
-
 function getBadgeClass(v){
   const u=v.toUpperCase();
   if(u.includes('EMPAQUE')) return 'bemp';
@@ -1334,28 +1309,205 @@ function getBadgeClass(v){
   return 'bemp';
 }
 
+function buildNgrHtml(prod, h2, descDate, usoDate, cadDate, cadHora, mini){
+  const cls = mini ? 'ngr-label mini' : 'ngr-label';
+  const emptyBox = `<span style="color:#aaa">--</span>`;
+  return `<div class="${cls}">
+    <!-- ROW 1: PRODUCTO -->
+    <div class="ngr-prod-row">
+      <span class="ngr-prod-lbl">Producto:</span>
+      <span class="ngr-prod-val">${prod||'—'}</span>
+    </div>
+    <!-- ROW 2: FECHAS -->
+    <div class="ngr-dates-row">
+      <div class="ngr-dcell">
+        <span class="ngr-dlbl">Fecha de Descongelación:</span>
+        <span class="ngr-dval">${descDate||emptyBox}</span>
+      </div>
+      <div class="ngr-dcell">
+        <span class="ngr-dlbl">Fecha de Uso:</span>
+        <span class="ngr-dval">${usoDate||emptyBox}</span>
+      </div>
+      <div class="ngr-dcell">
+        <span class="ngr-dlbl">Fecha de Caducidad:</span>
+        <span class="ngr-dval">${cadDate||emptyBox}</span>
+      </div>
+    </div>
+    <!-- ROW 3: HORAS -->
+    <div class="ngr-horas-row">
+      <div class="ngr-hcell">
+        <span class="ngr-hlbl">Hora</span>
+        <span class="ngr-hval" style="color:#aaa">--:--</span>
+      </div>
+      <div class="ngr-hcell">
+        <span class="ngr-hlbl">Hora</span>
+        <span class="ngr-hval">${h2||emptyBox}</span>
+      </div>
+      <div class="ngr-hcell">
+        <span class="ngr-hlbl">Hora</span>
+        <span class="ngr-hval">${cadHora||emptyBox}</span>
+      </div>
+    </div>
+    <!-- ROW 4: RESPONSABLE + NGR -->
+    <div class="ngr-bottom">
+      <span class="ngr-resp-lbl">Responsable:</span>
+      <span class="ngr-resp-val">Jonatan</span>
+      <span class="ngr-logo"><span class="sym">✦</span>NGR</span>
+    </div>
+  </div>`;
+}
+
+function getLblData(id){
+  const prod=$(id+'_prod').value.trim();
+  const h2=$(id+'_h2').value||'';
+  const usoV=$(id+'_uso').value;
+  const descV=$(id+'_desc').value;
+  const cadV=$(id+'_cad').value;
+  const usoDate=usoV?fmtDate(new Date(usoV+'T12:00')):'';
+  const descDate=descV?fmtDate(new Date(descV+'T12:00')):'';
+  let cadDate='',cadHora='';
+  if(cadV){ const cd=new Date(cadV); cadDate=fmtDate(cd); cadHora=fmtTime(cd); }
+  return {prod,h2,usoDate,descDate,cadDate,cadHora};
+}
+
+function updatePreview(id){
+  const prev=$(id+'_prev'); if(!prev) return;
+  const d=getLblData(id);
+  // Reuse buildNgrHtml with mini=true for card preview
+  prev.innerHTML = buildNgrHtml(d.prod,d.h2,d.descDate,d.usoDate,d.cadDate,d.cadHora,true);
+}
+
+function addLblCard(prefill){
+  const id='lbl'+(lblCnt++);
+  const now=new Date();
+  const opts=allTvProducts().map(n=>`<option value="${n}">`).join('');
+  const nowDate=now.toISOString().slice(0,10);
+  const nowTime=fmtTime(now);
+
+  const card=document.createElement('div');
+  card.className='lbl-card';
+  card.id=id;
+  card.innerHTML=`
+    <div class="lbl-preview" id="${id}_prev"></div>
+    <div class="lbl-body">
+      <div class="lbl-field full" style="margin-bottom:9px">
+        <label>Producto</label>
+        <div style="display:flex;gap:6px">
+          <input type="text" id="${id}_prod" list="${id}_dl" placeholder="Elige o escribe el producto…"
+            oninput="onProdChange('${id}')" autocomplete="off" style="flex:1;padding:8px 10px;border:1.5px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit;outline:none;background:#faf7f2"/>
+          <datalist id="${id}_dl">${opts}</datalist>
+        </div>
+      </div>
+      <div class="lbl-field-group">
+        <div class="lbl-field">
+          <label>Hora preparación</label>
+          <input type="time" id="${id}_h2" value="${nowTime}" oninput="updatePreview('${id}')"/>
+        </div>
+        <div class="lbl-field">
+          <label>Fecha descongelación</label>
+          <input type="date" id="${id}_desc" value="${nowDate}" oninput="updatePreview('${id}')"/>
+        </div>
+        <div class="lbl-field">
+          <label>Fecha de uso</label>
+          <input type="date" id="${id}_uso" value="${nowDate}" oninput="updatePreview('${id}')"/>
+        </div>
+        <div class="lbl-field cad">
+          <label>📅 Caducidad</label>
+          <input type="datetime-local" id="${id}_cad" oninput="updatePreview('${id}')"/>
+        </div>
+      </div>
+      <div class="lbl-info" id="${id}_info"><span>Selecciona un producto para calcular el vencimiento.</span></div>
+    </div>
+    <div class="lbl-card-footer">
+      <button class="lbl-sel-btn" onclick="toggleSelect('${id}')" id="${id}_selBtn">☐ Seleccionar</button>
+      <button class="lbl-del-btn" onclick="removeLblCard('${id}')" title="Quitar etiqueta">✕</button>
+    </div>`;
+
+  $('lblGrid').appendChild(card);
+  lblCards.push(id);
+
+  if(prefill){ $(id+'_prod').value=prefill; onProdChange(id); }
+  else updatePreview(id);
+
+  // auto-select new card
+  selectedIds.add(id);
+  card.classList.add('selected');
+  $(id+'_selBtn').textContent='☑ Seleccionada';
+
+  updateLblCount();
+}
+
+function onProdChange(id){
+  const name=$(id+'_prod').value.trim();
+  const entry=getTvEntry(name);
+  const infoEl=$(id+'_info');
+  const cadEl=$(id+'_cad');
+
+  if(!entry){ infoEl.innerHTML=`<span>Producto manual — edita el vencimiento.</span>`; updatePreview(id); return; }
+  const ms=parseTimeToMs(entry.v);
+  if(!ms){ infoEl.innerHTML=`<span>⚠ Según empaque — ingresa vencimiento manualmente.</span>`; updatePreview(id); return; }
+
+  const now=new Date();
+  const cad=new Date(now.getTime()+ms);
+  const cadStr=cad.getFullYear()+'-'+String(cad.getMonth()+1).padStart(2,'0')+'-'+
+    String(cad.getDate()).padStart(2,'0')+'T'+String(cad.getHours()).padStart(2,'0')+':'+String(cad.getMinutes()).padStart(2,'0');
+  cadEl.value=cadStr;
+  infoEl.innerHTML=`<span class="badge ${getBadgeClass(entry.v)}">${entry.v}</span>
+    <span style="color:var(--muted)">→ vence ${fmtDate(cad)} a las ${fmtTime(cad)}</span>`;
+  updatePreview(id);
+}
+
+function toggleSelect(id){
+  const el=$(id); const btn=$(id+'_selBtn'); if(!el||!btn) return;
+  if(selectedIds.has(id)){
+    selectedIds.delete(id);
+    el.classList.remove('selected');
+    btn.textContent='☐ Seleccionar';
+  } else {
+    selectedIds.add(id);
+    el.classList.add('selected');
+    btn.textContent='☑ Seleccionada';
+  }
+  updateLblCount();
+}
+
+function toggleSelectAll(){
+  const visIds=lblCards.filter(id=>{ const el=$(id); return el&&!el.classList.contains('hidden'); });
+  const allSel=visIds.every(id=>selectedIds.has(id));
+  visIds.forEach(id=>{
+    const el=$(id); const btn=$(id+'_selBtn'); if(!el||!btn) return;
+    if(allSel){ selectedIds.delete(id); el.classList.remove('selected'); btn.textContent='☐ Seleccionar'; }
+    else { selectedIds.add(id); el.classList.add('selected'); btn.textContent='☑ Seleccionada'; }
+  });
+  updateLblCount();
+}
+
 function removeLblCard(id){
   const el=$(id); if(el) el.remove();
   lblCards=lblCards.filter(x=>x!==id);
+  selectedIds.delete(id);
   updateLblCount();
 }
 
 function clearLabels(){
-  $('lblGrid').innerHTML='';
-  lblCards=[];
+  $('lblGrid').innerHTML=''; lblCards=[]; selectedIds=new Set();
   const srch=$('lblSearch'); if(srch) srch.value='';
-  updateLblCount();
-  addLblCard();
+  updateLblCount(); addLblCard();
 }
 
 function updateLblCount(){
-  const vis = lblCards.filter(id=>{
-    const el=$(id); return el && !el.classList.contains('hidden');
-  }).length;
-  const total = lblCards.length;
-  $('lblCount').textContent = total===vis
+  const vis=lblCards.filter(id=>{ const el=$(id); return el&&!el.classList.contains('hidden'); }).length;
+  const total=lblCards.length;
+  const sel=lblCards.filter(id=>selectedIds.has(id)).length;
+  $('lblCount').textContent=total===vis
     ? total+' etiqueta'+(total!==1?'s':'')
     : vis+' de '+total+' etiqueta'+(total!==1?'s':'');
+  const allBtn=$('selAllBtn');
+  if(allBtn){
+    const visIds=lblCards.filter(id=>{ const el=$(id); return el&&!el.classList.contains('hidden'); });
+    const allSel=visIds.length>0&&visIds.every(id=>selectedIds.has(id));
+    allBtn.textContent=allSel?'Deseleccionar todo':'Seleccionar todo';
+  }
 }
 
 function filterLabels(){
@@ -1364,65 +1516,48 @@ function filterLabels(){
     const el=$(id); if(!el) return;
     const prod=$(id+'_prod');
     const name=(prod?prod.value:'').toLowerCase();
-    el.classList.toggle('hidden', q!=='' && !name.includes(q));
+    el.classList.toggle('hidden', q!==''&&!name.includes(q));
   });
   updateLblCount();
 }
 
+// ── PREVIEW MODAL ──
+function openPreview(){
+  const toShow=lblCards.filter(id=>selectedIds.has(id));
+  if(!toShow.length){ toast('Selecciona al menos una etiqueta'); return; }
+  const grid=$('prevGrid');
+  grid.innerHTML='';
+  toShow.forEach(id=>{
+    const d=getLblData(id);
+    if(!d.prod) return;
+    grid.innerHTML+=buildNgrHtml(d.prod,d.h2,d.descDate,d.usoDate,d.cadDate,d.cadHora,true);
+  });
+  $('prevSubtitle').textContent=toShow.length+' etiqueta'+(toShow.length!==1?'s'||' seleccionadas':' seleccionada')+' — así se verán al imprimir.';
+  $('prevModal').classList.add('open');
+}
+
+function closePrevModal(e){
+  if(!e||e.target===$('prevModal')) $('prevModal').classList.remove('open');
+}
+
+function printFromPreview(){
+  $('prevModal').classList.remove('open');
+  setTimeout(printLabels, 100);
+}
+
 function printLabels(){
+  const toprint=lblCards.filter(id=>selectedIds.has(id));
+  if(!toprint.length){ toast('Selecciona etiquetas para imprimir'); return; }
   const area=$('printArea');
   area.innerHTML='';
-  let any=false;
-
-  lblCards.forEach(id=>{
-    const prod=$(id+'_prod').value.trim();
-    if(!prod) return;
-    any=true;
-
-    const h2=$(id+'_h2').value||'';
-    const usoV=$(id+'_uso').value;
-    const descV=$(id+'_desc').value;
-    const cadV=$(id+'_cad').value;
-
-    const usoDate = usoV?fmtDate(new Date(usoV+'T12:00')):'';
-    const descDate = descV?fmtDate(new Date(descV+'T12:00')):'';
-
-    let cadDate='', cadHora='';
-    if(cadV){
-      const cd=new Date(cadV);
-      cadDate=fmtDate(cd);
-      cadHora=fmtTime(cd);
-    }
-
-    // Build NGR-style label
-    const lbl=document.createElement('div');
-    lbl.className='ngr-label';
-    lbl.innerHTML=`
-      <div class="top-row">
-        <div class="brand">NGR ✦</div>
-        <div class="resp">RESPONSABLE: <span>Jonatan</span></div>
-      </div>
-      <div class="hora-grid">
-        <div class="hora-cell"><span class="hora-val"></span><span class="hora-lbl">HORA</span></div>
-        <div class="hora-cell"><span class="hora-val">${h2}</span><span class="hora-lbl">HORA</span></div>
-        <div class="hora-cell"><span class="hora-val">${cadHora}</span><span class="hora-lbl">HORA</span></div>
-      </div>
-      <div class="date-grid">
-        <div class="date-cell"><span class="date-val">${descDate}</span><span class="date-lbl">FECHA DE DESCONGELACIÓN:</span></div>
-        <div class="date-cell"><span class="date-val">${usoDate}</span><span class="date-lbl">FECHA DE USO:</span></div>
-        <div class="date-cell"><span class="date-val">${cadDate}</span><span class="date-lbl">FECHA DE CADUCIDAD:</span></div>
-      </div>
-      <div class="prod-row">
-        <span class="prod-lbl">PRODUCTO:</span>
-        <span class="prod-val">${prod}</span>
-      </div>`;
-    area.appendChild(lbl);
+  toprint.forEach(id=>{
+    const d=getLblData(id);
+    if(!d.prod) return;
+    area.innerHTML+=buildNgrHtml(d.prod,d.h2,d.descDate,d.usoDate,d.cadDate,d.cadHora,false);
   });
-
-  if(!any){ toast('Agrega al menos un producto'); return; }
   area.style.display='block';
   window.print();
-  setTimeout(()=>{ area.style.display='none'; },500);
+  setTimeout(()=>{ area.style.display='none'; },600);
 }
 
 // ─── INIT ────────────────────────────────────────────
