@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>China Wok — Herramientas</title>
+<title>China Wok — Herramientas y Recetas</title>
 <style>
 :root{
   --red:#c71920;--redd:#941116;
   --green:#2f7d22;--greend:#1f5f18;
   --blue:#1769aa;--blued:#0f4d82;
   --orange:#b85c00;
+  --yellow:#f5c842; /* Agregado para el módulo de recetas */
   --soft:#f8f4ec;--card:#fff;
   --line:#eadfce;--text:#202124;--muted:#697077;
   --shadow:0 12px 36px rgba(0,0,0,.1);
@@ -31,6 +32,9 @@ nav button:hover{background:rgba(255,255,255,.08);}
 nav button.act-m{background:var(--red);color:#fff;}
 nav button.act-h{background:var(--blue);color:#fff;}
 nav button.act-t{background:var(--orange);color:#fff;}
+nav button.act-e{background:#5b2d8e;color:#fff;}
+nav button.act-r{background:var(--red);color:#fff;} /* Agregado para Recetas */
+
 main{padding:26px;min-width:0;}
 
 /* PAGE */
@@ -149,9 +153,6 @@ td.amt{font-weight:900;color:var(--green);font-size:16px;}
 .delbtn:hover{background:#ffcfcf;}
 .empty{text-align:center;padding:36px 20px;color:var(--muted);}
 
-/* ── ETIQUETAS ── */
-nav button.act-e{background:#5b2d8e;color:#fff;}
-
 /* auto-hero */
 .auto-hero{background:linear-gradient(135deg,#3d1f63,#5b2d8e);border-radius:var(--r);padding:22px 26px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;color:#fff;box-shadow:var(--shadow);}
 .auto-hero-left{display:flex;gap:16px;align-items:flex-start;flex:1;}
@@ -250,13 +251,11 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
   #printArea{position:fixed;left:0;top:0;width:100%;background:#fff;padding:5mm;}
   .ngr-label{page-break-inside:avoid;}
 }
-/* NGR LABEL — layout fiel a la etiqueta real */
 .ngr-label{
   width:100mm; border:3px solid #000; border-radius:5mm;
   font-family:'Arial Black',Arial,sans-serif; background:#fff;
   display:inline-block; margin:2.5mm; vertical-align:top; overflow:hidden;
 }
-/* ROW 1: PRODUCTO */
 .ngr-prod-row{
   display:flex; align-items:center; gap:2mm;
   padding:2.5mm 3mm; border-bottom:2px solid #000;
@@ -267,7 +266,6 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
   padding:1.5mm 2.5mm; font-size:10pt; font-weight:700;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-/* ROW 2: FECHAS */
 .ngr-dates-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid #000;}
 .ngr-dcell{padding:2mm 2.5mm;border-right:2px solid #000;}
 .ngr-dcell:last-child{border-right:none;}
@@ -277,7 +275,6 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
   padding:1.5mm 2mm; font-size:9.5pt; font-weight:700;
   display:block; text-align:center; min-height:6mm; line-height:1.3;
 }
-/* ROW 3: HORAS */
 .ngr-horas-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid #000;}
 .ngr-hcell{padding:2mm 2.5mm;border-right:2px solid #000;}
 .ngr-hcell:last-child{border-right:none;}
@@ -287,7 +284,6 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
   padding:1.5mm 2mm; font-size:9.5pt; font-weight:700;
   display:block; text-align:center; min-height:6mm; line-height:1.3;
 }
-/* ROW 4: RESPONSABLE + NGR */
 .ngr-bottom{display:flex;align-items:center;gap:2mm;padding:2.5mm 3mm;}
 .ngr-resp-lbl{font-size:10pt;font-weight:900;text-transform:uppercase;white-space:nowrap;letter-spacing:.5px;}
 .ngr-resp-val{
@@ -296,8 +292,6 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
 }
 .ngr-logo{font-size:12pt;font-weight:900;letter-spacing:1px;white-space:nowrap;display:flex;align-items:center;gap:1mm;}
 .ngr-logo .sym{font-size:16pt;}
-
-/* mini version for preview modal */
 .ngr-label.mini{width:80mm;font-size:85%;}
 .ngr-label.mini .ngr-prod-lbl{font-size:9pt;}
 .ngr-label.mini .ngr-prod-val{font-size:8.5pt;}
@@ -306,7 +300,6 @@ nav button.act-e{background:#5b2d8e;color:#fff;}
 .ngr-label.mini .ngr-resp-lbl{font-size:8.5pt;}
 .ngr-label.mini .ngr-resp-val{font-size:8.5pt;}
 .ngr-label.mini .ngr-logo{font-size:10pt;}
-
 #printArea{display:none;}
 
 /* MODAL */
@@ -359,6 +352,152 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
   nav{grid-template-columns:1fr 1fr;}
   .ingrow{grid-template-columns:1fr 65px 52px 28px;}
   h1{font-size:22px;}
+}
+
+/* ========================================================= */
+/* ESTILOS DEL MÓDULO DE RECETAS (CHINA WOK APP INTEGRADO) */
+/* ========================================================= */
+
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.rec-card{background:var(--card);border-radius:var(--r);border:1px solid var(--line);overflow:hidden;
+  box-shadow:var(--shadow);cursor:pointer;transition:all .18s;}
+.rec-card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.14);}
+.rc-banner{height:100px;display:flex;align-items:center;justify-content:center;position:relative;}
+.rc-emoji{font-size:52px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.2));}
+.rc-body{padding:15px 16px 17px;}
+.rc-name{font-size:16px;font-weight:900;margin-bottom:4px;}
+.rc-desc{font-size:13px;color:var(--muted);line-height:1.45;margin-bottom:10px;}
+.rc-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.rc-tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#f5f0e8;color:var(--muted);}
+.rc-tag.r{background:#ffeaea;color:var(--red);}
+.rc-tag.g{background:#eef8e9;color:var(--green);}
+.rc-tag.b{background:#eaf3ff;color:#1769aa;}
+.rc-tag.o{background:#fff3e0;color:var(--orange);}
+
+.detail{display:none;}
+.detail.show{display:block;}
+.list-wrap.hidden{display:none;}
+
+.back-btn{display:flex;align-items:center;gap:7px;border:1.5px solid var(--line);background:#fff;
+  border-radius:12px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer;
+  font-family:inherit;margin-bottom:20px;transition:all .15s;color:var(--text);}
+.back-btn:hover{background:#f5f0e8;}
+
+.rec-hero{border-radius:var(--r);padding:22px 26px;color:#fff;margin-bottom:20px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;box-shadow:var(--shadow);}
+.rh-left h2{font-size:clamp(20px,3.5vw,36px);font-weight:900;letter-spacing:.5px; margin-bottom: 0;}
+.rh-left .rh-sub{opacity:.85;font-size:14px;margin-top:4px;max-width:380px;line-height:1.5;}
+.rh-stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.rh-stat{background:rgba(255,255,255,.18);border-radius:12px;padding:9px 14px;text-align:center;}
+.rh-stat .sv{font-size:18px;font-weight:900;display:block;}
+.rh-stat .sl{font-size:10px;opacity:.8;font-weight:600;letter-spacing:.3px;}
+.rh-emoji{font-size:60px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.3));}
+
+.mode-toggle{display:flex;background:#fff;border:1.5px solid var(--line);border-radius:14px;
+  padding:4px;gap:4px;margin-bottom:22px;max-width:480px;}
+.mode-btn{flex:1;border:none;background:transparent;padding:10px;border-radius:10px;
+  font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--muted);transition:all .18s;}
+.mode-btn.on{background:var(--red);color:#fff;}
+
+.study{display:none;}
+.study.show{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;}
+.sidebar{position:sticky;top:72px;}
+.info-panel{background:#fff;border-radius:var(--r);border:1px solid var(--line);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.ip-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:10px;}
+.ing-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0ebe0;font-size:13px;}
+.ing-row:last-child{border-bottom:none;}
+.ing-row .amt{font-weight:800;color:var(--green);}
+.tool-chip{display:inline-block;background:#f5f0e8;border-radius:7px;padding:3px 8px;font-size:11px;margin:2px;color:var(--muted);font-weight:600;}
+
+.steps-col{display:grid;gap:10px;}
+.step-card{background:#fff;border-radius:14px;border:1px solid var(--line);overflow:hidden;}
+.step-head{display:flex;align-items:center;gap:11px;padding:13px 16px;cursor:pointer;user-select:none;}
+.step-head:hover{background:#fdfaf5;}
+.step-num{width:32px;height:32px;border-radius:50%;color:#fff;font-weight:900;font-size:13px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-htitle{font-weight:800;font-size:14px;flex:1;}
+.step-time-badge{background:#fbf7ef;border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;}
+.step-chevron{font-size:12px;color:var(--muted);transition:transform .2s;}
+.step-card.open .step-chevron{transform:rotate(180deg);}
+.step-body{display:none;padding:0 16px 14px 59px;font-size:14px;line-height:1.7;color:#444;border-top:1px solid #f5f0e8;}
+.step-card.open .step-body{display:block;}
+.tip-block{margin-top:9px;background:#fffbea;border-left:3px solid var(--yellow);
+  padding:8px 12px;border-radius:0 8px 8px 0;font-size:13px;color:#7a5c00;}
+.alert-block{margin-top:9px;background:#ffeaea;border-left:3px solid var(--red);
+  padding:8px 12px;border-radius:0 8px 8px 0;font-size:13px;color:#8b1c1c;font-weight:600;}
+
+.station{display:none;max-width:560px;margin:0 auto;}
+.station.show{display:block;}
+.st-progress-wrap{margin-bottom:20px;}
+.st-progress-top{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;}
+.st-bar{height:7px;background:#e8e0d4;border-radius:99px;overflow:hidden;}
+.st-fill{height:100%;background:var(--red);border-radius:99px;transition:width .4s ease;}
+.st-card{background:#fff;border-radius:var(--r);border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow);}
+.st-card-top{padding:18px 20px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start;}
+.st-step-lbl{font-size:12px;opacity:.8;font-weight:700;margin-bottom:3px;}
+.st-step-title{font-size:19px;font-weight:900;line-height:1.2;}
+.st-time-pill{background:rgba(255,255,255,.2);border-radius:10px;padding:7px 14px;
+  font-size:15px;font-weight:900;white-space:nowrap;flex-shrink:0;}
+.st-card-body{padding:20px;}
+.st-text{font-size:15px;line-height:1.75;color:var(--text);}
+.st-tip{margin-top:13px;background:#fffbea;border-left:4px solid var(--yellow);padding:11px 14px;
+  border-radius:0 10px 10px 0;font-size:14px;color:#7a5c00;}
+.st-alert{margin-top:13px;background:#ffeaea;border-left:4px solid var(--red);padding:11px 14px;
+  border-radius:0 10px 10px 0;font-size:14px;color:#8b1c1c;font-weight:600;}
+.timer-box{display:flex;align-items:center;justify-content:space-between;
+  background:#fbf7ef;border-radius:12px;padding:13px 16px;margin-top:14px;}
+.timer-time{font-size:30px;font-weight:900;font-family:monospace;color:var(--red);}
+.timer-btns{display:flex;gap:7px;}
+.tbtn{border:none;border-radius:9px;padding:8px 14px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px;}
+.tbtn.go{background:var(--green);color:#fff;}
+.tbtn.stop{background:#ffeaea;color:var(--red);}
+.tbtn.reset{background:#f5f0e8;color:var(--muted);}
+.st-nav{display:flex;gap:10px;margin-top:18px;}
+.st-prev,.st-next{flex:1;border:none;border-radius:14px;padding:15px;font-size:15px;
+  font-weight:900;cursor:pointer;font-family:inherit;transition:all .15s;}
+.st-prev{background:#f5f0e8;color:var(--text);}
+.st-prev:hover{background:#e8e0d0;}
+.st-prev:disabled{opacity:.4;cursor:not-allowed;}
+.st-next{background:var(--red);color:#fff;}
+.st-next:hover{background:var(--redd);}
+.st-next.fin{background:var(--green);}
+.st-next.fin:hover{background:var(--greend);}
+.st-done{text-align:center;padding:40px 20px;}
+.st-done .done-emoji{font-size:64px;margin-bottom:14px;}
+.st-done h3{font-size:22px;font-weight:900;margin-bottom:8px;}
+.st-done p{color:var(--muted);font-size:14px;}
+
+.calc{display:none;}
+.calc.show{display:block;}
+.calc-controls{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;margin-bottom:20px;}
+.cc-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);}
+.cc-title{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.cc-val{font-size:24px;font-weight:900;color:var(--red);}
+.cc-input{width:100%;-webkit-appearance:none;appearance:none;height:6px;background:#e8e0d4;border-radius:4px;outline:none;margin-top:8px;}
+.cc-input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--red);cursor:pointer;}
+.num-input-wrap{display:flex;align-items:center;background:#f5f0e8;border-radius:10px;overflow:hidden;}
+.num-input-wrap input{border:none;background:transparent;padding:12px;font-size:18px;font-weight:900;width:100px;text-align:center;outline:none;}
+.num-input-wrap span{padding-right:16px;font-weight:700;color:var(--muted);}
+
+.calc-table-wrap{background:#fff;border-radius:var(--r);border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow);}
+.calc-table{width:100%;border-collapse:collapse;text-align:left;}
+.calc-table th{background:#faf8f4;padding:14px 16px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1.5px solid var(--line);}
+.calc-table td{padding:16px;font-size:14px;border-bottom:1px solid #f0ebe0;vertical-align:middle;}
+.calc-table tr:last-child td{border-bottom:none;}
+.td-ing{font-weight:700;}
+.td-neto{color:var(--text);font-family:monospace;font-size:15px;}
+.td-ref{font-weight:800;text-align:center;}
+.ref-liq{color:var(--orange);background:#fff3e0;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;}
+
+@media(max-width:860px){
+  .study.show{grid-template-columns:1fr;}
+  .sidebar{position:static;}
+}
+@media(max-width:480px){
+  .rh-emoji{display:none;}
+  .st-step-title{font-size:16px;}
+  .mode-toggle{flex-wrap:wrap;}
+  .mode-btn{flex-basis:100%;}
 }
 </style>
 </head>
@@ -432,6 +571,8 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
       <button id="navH" onclick="goPage('h')">💧 Hidratados</button>
       <button id="navT" onclick="goPage('t')">⏱ Tiempos</button>
       <button id="navE" onclick="goPage('e')">🏷 Etiquetas</button>
+      <!-- NUEVO BOTÓN PARA RECETAS -->
+      <button id="navR" onclick="goPage('r')">🥡 Recetas Wok</button>
     </nav>
   </aside>
 
@@ -619,7 +760,6 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
         </div>
       </div>
 
-      <!-- AUTO GENERATE HERO -->
       <div class="auto-hero">
         <div class="auto-hero-left">
           <div class="auto-icon">⚡</div>
@@ -634,7 +774,6 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
         </div>
       </div>
 
-      <!-- CONTROLS -->
       <div class="print-bar">
         <button class="btn-purple" onclick="printLabels()">🖨 Imprimir seleccionadas</button>
         <button class="btn-preview" onclick="openPreview()">👁 Vista previa</button>
@@ -650,6 +789,57 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
       <button class="add-lbl-btn" onclick="addLblCard()">＋ Agregar producto manualmente</button>
     </div>
 
+    <!-- NUEVA PESTAÑA: RECETAS -->
+    <div class="page" id="pageR">
+      <div class="topbar" id="wokListHeader">
+        <div class="title-area">
+          <div class="icon-box">🥡</div>
+          <div><h1 style="color:var(--red)">RECETAS WOK</h1><div class="sub">Guía de procedimientos y calculadora para estación.</div></div>
+        </div>
+      </div>
+      
+      <div class="wok-main">
+        <!-- LISTA DE RECETAS -->
+        <div class="list-wrap" id="listWrap">
+          <div class="rec-grid" id="recGrid"></div>
+        </div>
+
+        <!-- DETALLE DE RECETA -->
+        <div class="detail" id="detailView">
+          <button class="back-btn" onclick="showList()">← Volver a recetas</button>
+          <div class="rec-hero" id="recHero"></div>
+          <div class="mode-toggle">
+            <button class="mode-btn on" id="modeStudyBtn" onclick="setMode('study')">📚 Modo Estudio</button>
+            <button class="mode-btn" id="modeStationBtn" onclick="setMode('station')">⚡ Modo Estación (Wok)</button>
+            <button class="mode-btn" id="modeCalcBtn" onclick="setMode('calc')">🧮 Calculadora Wok</button>
+          </div>
+          
+          <div class="study" id="studyView"></div>
+          <div class="station" id="stationView"></div>
+          
+          <!-- CALCULADORA WOK -->
+          <div class="calc" id="calcView">
+            <div class="calc-controls">
+              <div class="cc-box">
+                <div class="cc-title">🔥 Multiplicador de Recetas <span class="cc-val" id="dispWoks">1x</span></div>
+                <p style="font-size:12px;color:var(--muted);margin-bottom:8px">Cantidad de woks o raciones a preparar juntas.</p>
+                <input type="range" class="cc-input" id="inputWoks" min="1" max="4" step="1" value="1" oninput="updateWokCalc()">
+              </div>
+              <div class="cc-box">
+                <div class="cc-title">🥄 Calibración de Cucharón</div>
+                <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Ajusta la capacidad de tu cucharón actual para líquidos.</p>
+                <div class="num-input-wrap">
+                  <input type="number" id="inputLadle" value="100" step="10" min="50" max="300" oninput="updateWokCalc()">
+                  <span>ml</span>
+                </div>
+              </div>
+            </div>
+            <div class="calc-table-wrap" id="calcTableWrap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 <div class="toast" id="toast"></div>
@@ -658,7 +848,10 @@ hr.div{border:0;border-top:1px solid var(--line);margin:16px 0;}
 <div id="printArea"></div>
 
 <script>
-// ─── DEFAULT DATA ────────────────────────────────────
+// =======================================================
+// DATOS Y LÓGICA DE HERRAMIENTAS ORIGINAL
+// =======================================================
+
 const DEF = {
   m: [
     {name:'Pollo M.A x 5gr / x 15gr', base:1, unit:'kg', ings:[
@@ -822,7 +1015,6 @@ const DEF = {
   ]
 };
 
-// ─── STATE ───────────────────────────────────────────
 let D = loadD();
 let du = {m:'kg', h:'kg'};
 let tvCat = 'todos';
@@ -830,10 +1022,10 @@ let tvSort = 'az';
 let recSec = null, recIdx = null, ingCnt = 0;
 
 const TV_CATS = [
-  {id:'todos',        lbl:'🌐 Todos'},
-  {id:'almacen',      lbl:'📦 Almacén'},
-  {id:'estacion',     lbl:'🍳 Estación'},
-  {id:'verduras',     lbl:'🥦 Verduras'},
+  {id:'todos',      lbl:'🌐 Todos'},
+  {id:'almacen',    lbl:'📦 Almacén'},
+  {id:'estacion',   lbl:'🍳 Estación'},
+  {id:'verduras',   lbl:'🥦 Verduras'},
   {id:'marinados_tv', lbl:'🥩 Marinados'},
   {id:'congelacion',  lbl:'❄️ Congelación'}
 ];
@@ -849,7 +1041,6 @@ function loadD(){
 }
 function saveD(){ localStorage.setItem('cw6',JSON.stringify(D)); }
 
-// ─── UTILS ───────────────────────────────────────────
 const $=id=>document.getElementById(id);
 function cl(v){ return Number.isInteger(v)?String(v):String(+(+v).toFixed(3)); }
 
@@ -901,16 +1092,18 @@ function toast(msg){
   t._x=setTimeout(()=>t.classList.remove('show'),2400);
 }
 
-// ─── NAVIGATION ──────────────────────────────────────
+// =======================================================
+// INTEGRACIÓN NAVEGACIÓN AGREGANDO 'r' (Recetas)
+// =======================================================
 function goPage(p){
-  ['m','h','t','e'].forEach(x=>{
+  // Se agregó la letra 'r' para incluir la pestaña de Recetas
+  ['m','h','t','e','r'].forEach(x=>{
     $('page'+x.toUpperCase()).classList.toggle('show',x===p);
     const b=$('nav'+x.toUpperCase());
     b.className=x===p?'act-'+p:'';
   });
 }
 
-// ─── CALCULATOR ──────────────────────────────────────
 function initCalc(s){
   fillSel(s);
   fillQuick(s);
@@ -1010,7 +1203,6 @@ function copy(s){
 
 function reset(s){ $('qty'+s.toUpperCase()).value=getRec(s)?.base||1; render(s); }
 
-// ─── RECIPE MODAL ────────────────────────────────────
 function openRecModal(s){
   recSec=s; recIdx=null;
   $('recMTitle').textContent='Nueva receta — '+(s==='m'?'Marinado':'Hidratado');
@@ -1086,7 +1278,6 @@ function delRecipe(s){
   $('sel'+s.toUpperCase()).value=0; render(s); toast('Receta eliminada');
 }
 
-// ─── TIEMPOS DE VIDA ─────────────────────────────────
 function initTv(){
   $('tvTabs').innerHTML=TV_CATS.map(c=>
     `<button class="tvtab${c.id===tvCat?' on':''}" onclick="setTvCat('${c.id}')">${c.lbl}</button>`
@@ -1128,7 +1319,6 @@ function renderTv(){
 
   function sepRow(lbl){ return `<tr class="sep"><td colspan="5">${lbl}</td></tr>`; }
 
-  // split fixed vs según empaque
   let fixed = all.filter(r=>!r.v.toUpperCase().includes('EMPAQUE'));
   let semp  = all.filter(r=>r.v.toUpperCase().includes('EMPAQUE'));
 
@@ -1141,8 +1331,6 @@ function renderTv(){
   let html='';
 
   if(isAll && (tvSort==='ta'||tvSort==='td')){
-    // ── MODO TODOS + ORDEN POR TIEMPO: agrupar por bloques de tiempo ──
-    // bucket by time string (normalized)
     const buckets = new Map();
     fixed.forEach(r=>{
       const k=r.v.toUpperCase();
@@ -1159,7 +1347,6 @@ function renderTv(){
       html+=items.map(row).join('');
     });
   } else if(isAll && (tvSort==='az'||tvSort==='za')){
-    // ── MODO TODOS + ORDEN A-Z/Z-A: separadores por categoría ──
     const catOrder=['almacen','estacion','verduras','marinados_tv','congelacion'];
     const bycat = {};
     catOrder.forEach(c=>{ bycat[c]=[]; });
@@ -1170,14 +1357,12 @@ function renderTv(){
       html+=items.map(row).join('');
     });
   } else {
-    // ── MODO POR SECCIÓN (comportamiento original) ──
     html+=fixed.map(row).join('');
   }
 
   if(semp.length){
     html+=sepRow('📦 Según empaque del proveedor');
     if(isAll){
-      // show sub-separators by category inside según empaque
       const catOrder=['almacen','estacion','verduras','marinados_tv','congelacion'];
       const bycat={};
       catOrder.forEach(c=>{ bycat[c]=[]; });
@@ -1226,12 +1411,11 @@ function saveTv(){
 }
 
 
-// ─── ETIQUETAS ───────────────────────────────────────
+// ETIQUETAS
 let lblCards = [];
 let lblCnt = 0;
 let selectedIds = new Set();
 
-// Categories available for filter
 const AUTO_CATS = [
   {id:'almacen',      lbl:'📦 Almacén'},
   {id:'estacion',     lbl:'🍳 Estación'},
@@ -1268,7 +1452,6 @@ function autoGenerate(){
   if(!products.length){ toast('No hay productos con tiempo definido'); return; }
   $('lblGrid').innerHTML=''; lblCards=[]; selectedIds=new Set();
   products.forEach(p=>addLblCard(p.n));
-  // auto-select all
   lblCards.forEach(id=>{ selectedIds.add(id); const el=$(id); if(el) el.classList.add('selected'); });
   const srch=$('lblSearch'); if(srch) srch.value='';
   filterLabels();
@@ -1373,7 +1556,6 @@ function getLblData(id){
 function updatePreview(id){
   const prev=$(id+'_prev'); if(!prev) return;
   const d=getLblData(id);
-  // Reuse buildNgrHtml with mini=true for card preview
   prev.innerHTML = buildNgrHtml(d.prod,d.h2,d.descDate,d.usoDate,d.cadDate,d.cadHora,true);
 }
 
@@ -1429,11 +1611,9 @@ function addLblCard(prefill){
   if(prefill){ $(id+'_prod').value=prefill; onProdChange(id); }
   else updatePreview(id);
 
-  // auto-select new card
   selectedIds.add(id);
   card.classList.add('selected');
   $(id+'_selBtn').textContent='☑ Seleccionada';
-
   updateLblCount();
 }
 
@@ -1521,7 +1701,6 @@ function filterLabels(){
   updateLblCount();
 }
 
-// ── PREVIEW MODAL ──
 function openPreview(){
   const toShow=lblCards.filter(id=>selectedIds.has(id));
   if(!toShow.length){ toast('Selecciona al menos una etiqueta'); return; }
@@ -1560,12 +1739,524 @@ function printLabels(){
   setTimeout(()=>{ area.style.display='none'; },600);
 }
 
-// ─── INIT ────────────────────────────────────────────
+
+// =======================================================
+// LÓGICA DE LA APLICACIÓN DE RECETAS WOK
+// =======================================================
+
+const RECIPES = [
+  {
+    id:'saltado', name:'Saltado de Pollo', emoji:'🥡', color:'linear-gradient(135deg,#c71920,#7a0e13)',
+    desc:'Trozos de pollo salteados con verduras frescas y salsa oriental.', tipo:'Fritura + Salteado', tiempo:'5 min', porcion:'0.390 kg', rendimiento:'1.820 kg',
+    tags:[{l:'5 min',c:'g'},{l:'Salteado',c:'b'},{l:'Fácil',c:'o'}],
+    ings:[
+      {n:'Pollo MA marinado', a:'0.390 kg', q:390, u:'g', type:'solid'},
+      {n:'Col china en bastones', a:'0.660 kg', q:660, u:'g', type:'solid'},
+      {n:'Pimiento rojo en bastones', a:'0.060 kg', q:60, u:'g', type:'solid'},
+      {n:'Frejolito chino', a:'0.080 kg', q:80, u:'g', type:'solid'},
+      {n:'Cebolla china (parte blanca)', a:'0.200 kg', q:200, u:'g', type:'solid'},
+      {n:'Salsa saltado hidratada', a:'0.400 kg', q:400, u:'ml', type:'liquid'},
+      {n:'Chuño diluido (para ligar)', a:'0.030 kg', q:30, u:'ml', type:'liquid'},
+    ],
+    tools:['Wok salteador','Cucharon 12 oz','Paila/Freidora','Balanza','Pomo biberón 1L'],
+    quality:{
+      sabor:'Plato salado, combinación perfecta de verduras chinas y pollo. La salsa saltado le da un toque oriental.',
+      textura:'Pollo frito jugoso, con verduras frescas crujientes, no sobre cocinadas. Color vibrante con salsa brillante y uniforme.',
+      tiempo:'Távola: máximo 40 min. Mover cada 10 min.',
+      servido:'Siempre acompañado con tallarín chino. Ingredientes bien distribuidos con cantidad generosa de salsa.'
+    },
+    noAceptable:['Verduras con bordes quemados o aguachentas','Pollo crudo, salado o refrito','Pan con mucha salsa, muy aceitoso o seco'],
+    steps:[
+      {fase:'prep', t:'Freír el pollo', time:'2.5 min', body:'Colocar 0.390 kg de pollo marinado en aceite a 180°C... Retirar y escurrir.',alert:'Agitar máximo 3 veces.'},
+      {fase:'wok', t:'Lubricar el wok', time:'10 seg', body:'Usar 1 cucharón lleno de aceite de fritura, movimientos circulares. Fuego alto.'},
+      {fase:'wok', t:'Retirar el aceite', time:'5 seg', body:'Devolver el aceite a la paila. Escurrir todo.',alert:'Escurrir TODO el aceite.'},
+      {fase:'wok', t:'Agregar aceite limpio', time:'10 seg', body:'Fuego apagado, añadir aceite limpio (0.010 kg) usando la jarra. Calentar 5 seg.'},
+      {fase:'wok', t:'Saltear cebolla china', time:'30 seg', body:'Agregar cebolla china blanca. Aplicar técnica: 3 salteadas + 3 movimientos con cucharón, repetir 2 veces.'},
+      {fase:'wok', t:'Añadir pollo frito', time:'10 seg', body:'Incorporar pollo frito. Aplicar técnica: 1 serie de 3 salteadas + 3 movimientos.'},
+      {fase:'wok', t:'Salsa + primer hervor + col', time:'45 seg', body:'Agregar salsa saltado hidratada. Cocinar hasta PRIMER HERVOR. Agregar col y saltear. Luego añadir chuño diluido.'},
+      {fase:'wok', t:'Incorporar pimiento y frejolito', time:'20 seg', body:'Añadir pimiento y frejolito. Saltear. Cocinar a fuego alto observando que la salsa se adhiera.'},
+      {fase:'wok', t:'Servir', time:'5 seg', body:'Verter en pan cuadrado limpio.'},
+    ]
+  },
+  {
+    id:'mandarin', name:'Pollo Mandarín', emoji:'🟠', color:'linear-gradient(135deg,#e07b00,#a35800)',
+    desc:'Bolitas de pollo crocante bañadas en salsa agridulce, decoradas con pimiento y cebolla.', tipo:'Empanizado + Salteado', tiempo:'8 min', porcion:'0.500 kg', rendimiento:'~30 piezas',
+    tags:[{l:'8 min',c:'o'},{l:'Empanizado',c:'r'},{l:'Bolitas',c:'b'}],
+    ings:[
+      {n:'Pollo Mandarín marinado', a:'0.500 kg', q:500, u:'g', type:'solid'},
+      {n:'Salsa Mandarín hidratada', a:'0.400 lt', q:400, u:'ml', type:'liquid'},
+      {n:'Chuño diluido para ligar', a:'0.030 kg', q:30, u:'ml', type:'liquid'},
+      {n:'Cebolla china en cubos', a:'0.005 kg', q:5, u:'g', type:'solid'},
+      {n:'Pimiento en brunoise', a:'0.005 kg', q:5, u:'g', type:'solid'},
+    ],
+    tools:['Wok salteador','Cucharon 12 oz','Paila/Freidora','Bowl empanizar'],
+    quality:{
+      sabor:'Sabor equilibrado agridulce picante. Distribución uniforme en cada bolita.',
+      textura:'Crocante por fuera, jugoso por dentro. Color caramelizado.',
+      tiempo:'Távola: máximo 40 min.',
+      servido:'Cada porción con salsa y trozos. Bolitas totalmente cubiertas de salsa.'
+    },
+    noAceptable:['Pollo crudo','Trozos pegados y/o secos','Salsa espesa o líquida'],
+    steps:[
+      {fase:'prep', t:'Empanizar el pollo', time:'30 seg', body:'Colocar el pollo en el bowl con chuño. 10 movimientos envolventes.'},
+      {fase:'prep', t:'Formar bolitas', time:'2 min', body:'Presionar y hacer movimientos envolventes hasta formar bolita compacta.'},
+      {fase:'prep', t:'Freír las bolitas', time:'3.5 min', body:'Trasladar placa al aceite a 175°C. Freír 3.5 minutos.'},
+      {fase:'wok', t:'Limpiar el wok', time:'10 seg', body:'Asegurarse de que el wok esté completamente limpio y seco.'},
+      {fase:'wok', t:'Preparar salsa en wok', time:'30 seg', body:'Verter salsa Mandarín a fuego alto. Añadir chuño diluido. Movimientos suaves hasta el PRIMER HERVOR.',alert:'No debe salpicar.'},
+      {fase:'wok', t:'Saltear bolitas con salsa', time:'10 seg', body:'Verter bolitas frito. Aplicar técnica: 1 serie de 3 salteadas + 3 movimientos con cucharón.'},
+      {fase:'wok', t:'Decorar y servir', time:'5 seg', body:'Agregar pimiento en brunoise y cebolla china en cubos sobre el pollo.'},
+    ]
+  },
+  {
+    id:'honey', name:'Pollo Honey', emoji:'🍯', color:'linear-gradient(135deg,#d4880a,#9a5e00)',
+    desc:'Bolitas de pollo crocante caramelizadas en jugosa salsa dulce de miel y piña.', tipo:'Empanizado + Salteado', tiempo:'6 min', porcion:'0.500 kg', rendimiento:'~33 piezas',
+    tags:[{l:'6 min',c:'g'},{l:'Dulce',c:'o'},{l:'Empanizado',c:'r'}],
+    ings:[
+      {n:'Pollo M.H marinado', a:'0.500 kg', q:500, u:'g', type:'solid'},
+      {n:'Salsa Honey hidratada', a:'0.400 kg', q:400, u:'ml', type:'liquid'},
+    ],
+    tools:['Wok salteador','Cucharon 12 oz','Paila/Freidora','Pomo biberón'],
+    quality:{
+      sabor:'Sabor equilibrado con miel y piña bien distribuido en cada trozo.',
+      textura:'Naranja caramelizado. Crocante por fuera, jugoso por dentro.',
+      tiempo:'Távola: máximo 40 min.',
+      servido:'Bolitas totalmente cubiertas.'
+    },
+    noAceptable:['Pollo crudo','Trozos pegados','Salsa espesa','Partes quemadas'],
+    steps:[
+      {fase:'prep', t:'Empanizar el pollo', time:'30 seg', body:'Colocar pollo en bowl con chuño. 10 movimientos envolventes.'},
+      {fase:'prep', t:'Formar bolitas y Freír', time:'5.5 min', body:'Presionar hasta bolita compacta y freír 3.5 min a 180°C.'},
+      {fase:'wok', t:'Preparar salsa Honey', time:'20 seg', body:'Verter salsa honey a fuego alto. Al primer hervor, apagar el fuego INMEDIATAMENTE.',alert:'Se quema fácil.'},
+      {fase:'wok', t:'Saltear pollo con salsa', time:'10 seg', body:'Agregar pollo y saltear: 3 movimientos + 3 constantes.'},
+      {fase:'wok', t:'Servir', time:'5 seg', body:'Colocar en pan cuadrado.'},
+    ]
+  },
+  {
+    id:'taypa', name:'Pollo Taypa', emoji:'🌿', color:'linear-gradient(135deg,#2f7d22,#1a5012)',
+    desc:'Pollo frito con verduras crocantes bañados en salsa criolla oriental.', tipo:'Fritura + Salteado', tiempo:'5 min', porcion:'0.500 kg', rendimiento:'1.470 kg',
+    tags:[{l:'5 min',c:'g'},{l:'Verduras',c:'g'},{l:'Criollo',c:'o'}],
+    ings:[
+      {n:'Pollo MA marinado', a:'0.500 kg', q:500, u:'g', type:'solid'},
+      {n:'Cebolla roja', a:'0.130 kg', q:130, u:'g', type:'solid'},
+      {n:'Zanahoria blanqueada', a:'0.165 kg', q:165, u:'g', type:'solid'},
+      {n:'Apio en juliana', a:'0.030 kg', q:30, u:'g', type:'solid'},
+      {n:'Ají amarillo y Ajo', a:'0.020 kg', q:20, u:'g', type:'solid'},
+      {n:'Vainita blanqueada', a:'0.070 kg', q:70, u:'g', type:'solid'},
+      {n:'Brócoli blanqueado', a:'0.100 kg', q:100, u:'g', type:'solid'},
+      {n:'Salsa Taypa hidratada', a:'0.365 kg', q:365, u:'ml', type:'liquid'},
+      {n:'Chuño diluido', a:'0.030 kg', q:30, u:'ml', type:'liquid'},
+    ],
+    tools:['Wok salteador','Cucharon 12 oz','Paila/Freidora','Balanza','Pomo biberón'],
+    quality:{
+      sabor:'Toque criollo oriental. Verduras dejan aroma irresistible.',
+      textura:'Verduras crujientes, salsa brillante.',
+      tiempo:'Távola: máximo 40 min.',
+      servido:'Acompañado con tallarín. Decorado con brócoli.'
+    },
+    noAceptable:['Verduras quemadas','Pollo crudo'],
+    steps:[
+      {fase:'prep', t:'Freír el pollo', time:'2.5 min', body:'Colocar pollo en aceite a 180°C. Separar trozos.'},
+      {fase:'wok', t:'Lubricar el wok', time:'10 seg', body:'Aceite en cascada, fuego alto.'},
+      {fase:'wok', t:'Retirar aceite y Agregar limpio', time:'15 seg', body:'Devolver aceite y poner limpio (0.010 kg).'},
+      {fase:'wok', t:'Saltear ajo, ají, apio y cebolla', time:'30 seg', body:'Agregar verduras aromáticas. Saltear hasta dorar y liberar fragancia.'},
+      {fase:'wok', t:'Añadir pollo', time:'10 seg', body:'Incorporar pollo frito. 1 serie de 3+3.'},
+      {fase:'wok', t:'Salsa Taypa + primer hervor', time:'45 seg', body:'Agregar salsa Taypa. Mezclar hasta PRIMER HERVOR.'},
+      {fase:'wok', t:'Zanahoria y vainita', time:'15 seg', body:'Agregar zanahoria y vainita. Saltear.'},
+      {fase:'wok', t:'Chuño para ligar', time:'10 seg', body:'Añadir chuño diluido. Salteo suave hasta adherir. Apagar fuego.'},
+      {fase:'wok', t:'Servir y decorar', time:'5 seg', body:'Verter en pan y decorar con brócoli.'},
+    ]
+  },
+  {
+    id:'chijaukay', name:'Pollo Chijaukay', emoji:'🟤', color:'linear-gradient(135deg,#5e3507,#3b1f02)',
+    desc:'Filetes de pollo marinado, empanizados y fritos, bañados en salsa sesame con ajonjolí.', tipo:'Empanizado + Salsa directa', tiempo:'6 min', porcion:'0.500 kg', rendimiento:'~33 piezas',
+    tags:[{l:'6 min',c:'g'},{l:'Sesame',c:'b'},{l:'Ajonjolí',c:'o'}],
+    ings:[
+      {n:'Pollo marinado sesame', a:'0.500 kg', q:500, u:'g', type:'solid'},
+      {n:'Chuño para empanizar', a:'1.000 kg', q:1000, u:'g', type:'solid'},
+      {n:'Salsa Sesame hidratada', a:'0.500 lt', q:500, u:'ml', type:'liquid'},
+      {n:'Chuño diluido para ligar', a:'0.030 kg', q:30, u:'ml', type:'liquid'},
+      {n:'Semilla de ajonjolí tostada', a:'0.005 kg', q:5, u:'g', type:'solid'},
+    ],
+    tools:['Wok salteador','Cucharon 12 oz','Paila/Freidora','Balanza','Bowl chuño','Dispensador ajonjolí'],
+    quality:{
+      sabor:'Marinado sesame equilibrado.',
+      textura:'Dorado caramelizado. Crocante por fuera, jugoso por dentro.',
+      tiempo:'Távola: máximo 40 min.',
+      servido:'Cada porción con salsa y trozos decorados con ajonjolí.'
+    },
+    noAceptable:['Pollo crudo','Trozos pegados','Salsa espesa','Ajonjolí quemado'],
+    steps:[
+      {fase:'prep', t:'Empanizar el pollo', time:'30 seg', body:'Colocar pollo en bowl con chuño. 10 movimientos envolventes.'},
+      {fase:'prep', t:'Aplanar los trozos', time:'30 seg', body:'Dar golpes ligeros uniformes hasta quedar compacto, uniforme y APLANADO.'},
+      {fase:'prep', t:'Freír los trozos', time:'3.5 min', body:'Colocar en aceite a 180°C. Freír 3.5 min. Retirar y escurrir.'},
+      {fase:'wok', t:'Preparar salsa sesame en wok', time:'40 seg', body:'Fuego alto. Verter salsa sesame. Inmediatamente agregar chuño diluido. Consistencia yogurt líquido.'},
+      {fase:'wok', t:'Bañar el pollo con la salsa', time:'10 seg', body:'Verter la salsa ligada sobre el pollo frito, cubriéndolo completamente.'},
+      {fase:'wok', t:'Espolvorear ajonjolí y servir', time:'5 seg', body:'Espolvorear semillas de ajonjolí tostadas sobre todos los trozos.'},
+    ]
+  },
+  {
+    id:'tipakay', name:'Pollo Tipakay', emoji:'🌶️', color:'linear-gradient(135deg,#c42b00,#8a1d00)',
+    desc:'Palitos de pollo crocante salteados con ají amarillo y bañados en salsa de tamarindo.', tipo:'Empanizado + Salteado', tiempo:'6 min', porcion:'0.500 kg', rendimiento:'~50 palitos',
+    tags:[{l:'6 min',c:'g'},{l:'Tamarindo',c:'r'},{l:'Palitos',c:'b'}],
+    ings:[
+      {n:'Pollo tipakay marinado', a:'0.500 kg', q:500, u:'g', type:'solid'},
+      {n:'Chuño para empanizar', a:'1.000 kg', q:1000, u:'g', type:'solid'},
+      {n:'Salsa Tipakay hidratada', a:'0.500 lt', q:500, u:'ml', type:'liquid'},
+      {n:'Chuño diluido para ligar', a:'0.030 kg', q:30, u:'ml', type:'liquid'},
+      {n:'Ají amarillo en juliana', a:'0.015 kg', q:15, u:'g', type:'solid'},
+      {n:'Semilla de ajonjolí tostada', a:'0.005 kg', q:5, u:'g', type:'solid'},
+    ],
+    tools:['Wok salteador','Cucharon 12 oz','Paila/Freidora','Balanza','Bowl chuño'],
+    quality:{
+      sabor:'Sabor dulce-salado. Distribución uniforme.',
+      textura:'Rojo brillante. Crocante por fuera, jugoso por dentro.',
+      tiempo:'Távola: máximo 40 min.',
+      servido:'Cada porción con salsa, trozos y ajonjolí.'
+    },
+    noAceptable:['Pollo crudo','Trozos pegados','Salsa espesa','Ajonjolí quemado'],
+    steps:[
+      {fase:'prep', t:'Empanizar el pollo', time:'30 seg', body:'Colocar pollo en bowl con chuño. 10 movimientos envolventes.'},
+      {fase:'prep', t:'Formar palitos', time:'30 seg', body:'Friccionar hasta 3 veces para formar un PALITO alargado y compacto.'},
+      {fase:'prep', t:'Freír los palitos', time:'3.5 min', body:'Freír 3.5 minutos a 180°C.'},
+      {fase:'wok', t:'Lubricar el wok', time:'10 seg', body:'1 cucharón de aceite. Movimientos circulares.'},
+      {fase:'wok', t:'Retirar el aceite', time:'5 seg', body:'Devolver aceite a la paila. Escurrir todo.'},
+      {fase:'wok', t:'Saltear ají amarillo', time:'10 seg', body:'Agregar ají amarillo al wok. 1 serie de 3+3.'},
+      {fase:'wok', t:'Salsa Tipakay + chuño', time:'30 seg', body:'Verter salsa tipakay a fuego alto. Añadir chuño diluido. Cocinar hasta PRIMER HERVOR.'},
+      {fase:'wok', t:'Saltear pollo con salsa', time:'10 seg', body:'Verter pollo frito. 1 serie de 3+3. Verter en pan cuadrado.'},
+      {fase:'wok', t:'Ajonjolí y servir', time:'5 seg', body:'Espolvorear ajonjolí tostado. Enviar al counter.'},
+    ]
+  }
+];
+
+let currentRec = null;
+let currentMode = 'study';
+let currentStep = 0;
+let timerInterval = null;
+let timerSecs = 0;
+let timerRunning = false;
+let stationSteps = [];
+
+function initWokApp(){
+  const grid = document.getElementById('recGrid');
+  RECIPES.forEach((r,i)=>{
+    const card = document.createElement('div');
+    card.className = 'rec-card';
+    card.onclick = ()=>openRecipe(i);
+    card.innerHTML=`
+      <div class="rc-banner" style="background:${r.color}">
+        <span class="rc-emoji">${r.emoji}</span>
+      </div>
+      <div class="rc-body">
+        <div class="rc-name">${r.name}</div>
+        <div class="rc-desc">${r.desc}</div>
+        <div class="rc-tags">${r.tags.map(t=>`<span class="rc-tag ${t.c}">${t.l}</span>`).join('')}
+          <span class="rc-tag">${r.tipo}</span>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function showList(){
+  document.getElementById('listWrap').classList.remove('hidden');
+  document.getElementById('detailView').classList.remove('show');
+  document.getElementById('wokListHeader').style.display = 'flex';
+  stopTimer();
+}
+
+function openRecipe(idx){
+  currentRec = RECIPES[idx];
+  currentStep = 0;
+  stationSteps = currentRec.steps.filter(s => s.fase === 'wok');
+  
+  document.getElementById('listWrap').classList.add('hidden');
+  document.getElementById('wokListHeader').style.display = 'none';
+  document.getElementById('detailView').classList.add('show');
+  renderHero();
+  setMode('study');
+  window.scrollTo(0,0);
+}
+
+function renderHero(){
+  const r = currentRec;
+  document.getElementById('recHero').style.background = r.color;
+  document.getElementById('recHero').innerHTML=`
+    <div class="rh-left">
+      <h2>${r.emoji} ${r.name}</h2>
+      <div class="rh-sub">${r.desc}</div>
+      <div class="rh-stats">
+        <div class="rh-stat"><span class="sv">${r.tiempo}</span><span class="sl">TIEMPO BASE</span></div>
+        <div class="rh-stat"><span class="sv">${r.porcion}</span><span class="sl">PORCIÓN</span></div>
+        <div class="rh-stat"><span class="sv">${stationSteps.length}</span><span class="sl">PASOS WOK</span></div>
+      </div>
+    </div>
+    <div class="rh-emoji">${r.emoji}</div>`;
+}
+
+function setMode(m){
+  currentMode = m;
+  document.getElementById('modeStudyBtn').classList.toggle('on', m==='study');
+  document.getElementById('modeStationBtn').classList.toggle('on', m==='station');
+  document.getElementById('modeCalcBtn').classList.toggle('on', m==='calc');
+  
+  const sv = document.getElementById('studyView');
+  const stv = document.getElementById('stationView');
+  const cv = document.getElementById('calcView');
+  
+  sv.classList.remove('show');
+  stv.classList.remove('show');
+  cv.classList.remove('show');
+  stopTimer();
+
+  if(m==='study'){
+    sv.classList.add('show');
+    renderStudy();
+  } else if(m==='station'){
+    stv.classList.add('show');
+    currentStep = 0; 
+    renderStation();
+  } else if(m==='calc'){
+    cv.classList.add('show');
+    updateWokCalc();
+  }
+}
+
+function renderStudy(){
+  const r = currentRec;
+
+  const steps = r.steps.map((s,i)=>{
+    const isWok = s.fase === 'wok';
+    return `
+    <div class="step-card" id="sc${i}">
+      <div class="step-head" onclick="toggleStep(${i})">
+        <div class="step-num" style="background:${isWok?'var(--red)':'var(--muted)'}">${i+1}</div>
+        <span class="step-htitle">${s.t} ${isWok?'🔥':''}</span>
+        <span class="step-time-badge">⏱ ${s.time}</span>
+        <span class="step-chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <p>${s.body}</p>
+        ${s.tip?`<div class="tip-block">💡 ${s.tip}</div>`:''}
+        ${s.alert?`<div class="alert-block">⚠ ${s.alert}</div>`:''}
+      </div>
+    </div>`
+  }).join('');
+
+  document.getElementById('studyView').innerHTML=`
+    <div class="sidebar">
+      <div class="info-panel">
+        <div class="ip-title">🧾 Ingredientes Base</div>
+        <table style="width:100%;text-align:left;">
+          ${r.ings.map(i=>`<tr><td style="padding:4px 0;font-size:13px;border-bottom:1px solid #f0ebe0">${i.n}</td><td style="text-align:right;font-weight:800;color:var(--green);font-size:13px;border-bottom:1px solid #f0ebe0">${i.a}</td></tr>`).join('')}
+        </table>
+      </div>
+      <div class="info-panel">
+        <div class="ip-title">🔧 Herramientas</div>
+        ${r.tools.map(t=>`<span class="tool-chip">${t}</span>`).join('')}
+      </div>
+    </div>
+    <div class="steps-col">
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:4px">🔥 Los pasos marcados en rojo son exclusivos de la fase Wok.</p>
+      ${steps}
+    </div>`;
+}
+
+function toggleStep(i){
+  const el = document.getElementById('sc'+i);
+  if(!el) return;
+  el.classList.toggle('open');
+}
+
+function renderStation(){
+  const r = currentRec;
+  stopTimer();
+  
+  if(currentStep >= stationSteps.length){
+    document.getElementById('stationView').innerHTML=`
+      <div class="st-done">
+        <div class="done-emoji">🔥</div>
+        <h3>¡Fase de Wok completada!</h3>
+        <p>El potaje está listo para servir en távola.</p>
+        <button onclick="currentStep=0;renderStation()" style="margin-top:20px;background:var(--red);color:#fff;border:none;border-radius:12px;padding:13px 24px;font-size:15px;font-weight:900;cursor:pointer;font-family:inherit;">Repetir Wok</button>
+      </div>`;
+    return;
+  }
+
+  const s = stationSteps[currentStep];
+  const pct = Math.round((currentStep/stationSteps.length)*100);
+  const isLast = currentStep === stationSteps.length-1;
+  const col = 'var(--red)';
+
+  let secs = parseTimeSecs(s.time);
+
+  document.getElementById('stationView').innerHTML=`
+    <div class="st-progress-wrap">
+      <div class="st-progress-top">
+        <span>Paso Wok ${currentStep+1} de ${stationSteps.length}</span>
+        <span>${pct}% completado</span>
+      </div>
+      <div class="st-bar"><div class="st-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="st-card">
+      <div class="st-card-top" style="background:${col}">
+        <div>
+          <div class="st-step-lbl">WOK EN ACCIÓN</div>
+          <div class="st-step-title">${s.t}</div>
+        </div>
+        <div class="st-time-pill">⏱ ${s.time}</div>
+      </div>
+      <div class="st-card-body">
+        <p class="st-text">${s.body}</p>
+        ${s.tip?`<div class="st-tip">💡 ${s.tip}</div>`:''}
+        ${s.alert?`<div class="st-alert">⚠ ${s.alert}</div>`:''}
+        ${secs>0?`
+        <div class="timer-box">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px">TEMPORIZADOR</div>
+            <div class="timer-display" id="timerDisp">${formatTime(secs)}</div>
+          </div>
+          <div class="timer-btns">
+            <button class="tbtn go" id="timerGoBtn" onclick="startTimer(${secs})">▶ Iniciar</button>
+            <button class="tbtn reset" onclick="resetTimer(${secs})">↺</button>
+          </div>
+        </div>`:''}
+      </div>
+    </div>
+    <div class="st-nav">
+      <button class="st-prev" onclick="prevStep()" ${currentStep===0?'disabled':''}>← Anterior</button>
+      <button class="st-next ${isLast?'fin':''}" onclick="nextStep()">${isLast?'✓ Wok Listo':'Siguiente →'}</button>
+    </div>`;
+
+  timerSecs = secs;
+  timerRunning = false;
+}
+
+function updateWokCalc(){
+  const woks = parseInt(document.getElementById('inputWoks').value) || 1;
+  const ladleCap = parseInt(document.getElementById('inputLadle').value) || 100;
+  
+  document.getElementById('dispWoks').textContent = woks + 'x';
+  
+  let html = `<table class="calc-table">
+    <thead>
+      <tr>
+        <th>Ingrediente</th>
+        <th>Cantidad Neta</th>
+        <th style="text-align:center;">Referencia Operativa</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  currentRec.ings.forEach(ing => {
+    if(!ing.q) return; 
+    
+    const totalQ = ing.q * woks;
+    let textQ = '';
+    let refBadge = '';
+
+    if(ing.u === 'g'){
+      textQ = totalQ >= 1000 ? `${(totalQ/1000).toFixed(2)} kg` : `${totalQ} g`;
+    } else if(ing.u === 'ml'){
+      textQ = totalQ >= 1000 ? `${(totalQ/1000).toFixed(2)} lt` : `${totalQ} ml`;
+    }
+
+    if(ing.type === 'liquid'){
+      const ladles = (totalQ / ladleCap).toFixed(1);
+      const ladlesClean = ladles.endsWith('.0') ? ladles.slice(0, -2) : ladles;
+      refBadge = `<span class="ref-liq">🥄 ${ladlesClean} cucharón(es)</span>`;
+    } else {
+      refBadge = `<span style="color:var(--muted);font-weight:900;">-</span>`;
+    }
+
+    html += `
+      <tr>
+        <td class="td-ing">${ing.n}</td>
+        <td class="td-neto">${textQ}</td>
+        <td class="td-ref">${refBadge}</td>
+      </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  document.getElementById('calcTableWrap').innerHTML = html;
+}
+
+function parseTimeSecs(t){
+  t = t.toLowerCase();
+  if(t.includes('min')){
+    const parts = t.match(/(\d+\.?\d*)\s*min(?:\s*[y+]\s*(\d+)\s*seg?)?/);
+    if(parts){
+      let s = parseFloat(parts[1])*60;
+      if(parts[2]) s += parseInt(parts[2]);
+      return Math.round(s);
+    }
+  }
+  const segMatch = t.match(/(\d+)\s*seg/);
+  if(segMatch) return parseInt(segMatch[1]);
+  return 0;
+}
+
+function formatTime(s){
+  const m = Math.floor(s/60);
+  const sec = s%60;
+  return (m>0?m+'m ':'')+String(sec).padStart(2,'0')+'s';
+}
+
+function startTimer(initSecs){
+  if(timerRunning) return;
+  timerRunning = true;
+  if(timerSecs<=0) timerSecs=initSecs;
+  const btn = document.getElementById('timerGoBtn');
+  if(btn) btn.textContent='⏸ Corriendo';
+  timerInterval = setInterval(()=>{
+    timerSecs--;
+    const disp = document.getElementById('timerDisp');
+    if(disp) disp.textContent = formatTime(timerSecs);
+    if(timerSecs<=0){
+      clearInterval(timerInterval);
+      timerRunning=false;
+      if(disp){ disp.textContent='✓ Listo'; disp.style.color='var(--green)';}
+      if(btn){ btn.textContent='✓ Listo'; btn.style.background='var(--green)'; }
+    }
+  },1000);
+}
+
+function resetTimer(initSecs){
+  stopTimer();
+  timerSecs = initSecs;
+  const disp = document.getElementById('timerDisp');
+  if(disp){ disp.textContent=formatTime(initSecs); disp.style.color='var(--red)'; }
+  const btn = document.getElementById('timerGoBtn');
+  if(btn){ btn.textContent='▶ Iniciar'; btn.style.background='var(--green)'; }
+}
+
+function stopTimer(){
+  if(timerInterval) clearInterval(timerInterval);
+  timerRunning = false;
+}
+
+function nextStep(){
+  stopTimer();
+  currentStep++;
+  renderStation();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function prevStep(){
+  stopTimer();
+  if(currentStep>0){ currentStep--; renderStation(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// =======================================================
+// INICIALIZACIÓN GLOBAL
+// =======================================================
 $('navM').className='act-m';
 initCalc('m');
 initCalc('h');
 initTv();
 initLabels();
+initWokApp(); // Inicializa la nueva pestaña de Recetas
+
 </script>
 </body>
 </html>
